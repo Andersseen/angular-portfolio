@@ -43,9 +43,7 @@
             "outputPath": "dist/ngt-template",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {
@@ -53,10 +51,11 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.css"
-            ],
-            "scripts": []
+            "styles": ["src/styles.css"],
+            "scripts": [],
+            "loader": {
+              ".glsl": "text"
+            }
           },
           "configurations": {
             "production": {
