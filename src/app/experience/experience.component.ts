@@ -10,7 +10,9 @@ import {
   viewChild,
 } from '@angular/core';
 import { extend, getLocalState, injectBeforeRender, injectObjectEvents } from 'angular-three';
-import { BoxGeometry, Mesh, MeshBasicMaterial } from 'three';
+import { NgtsPerspectiveCamera } from 'angular-three-soba/cameras';
+import { NgtsOrbitControls } from 'angular-three-soba/controls';
+import { BoxGeometry, GridHelper, Mesh, MeshBasicMaterial } from 'three';
 
 @Directive({
   selector: '[cursorPointer]',
@@ -34,6 +36,8 @@ export class CursorPointer {
 
 @Component({
   template: `
+    <ngts-perspective-camera [options]="{ makeDefault: true, position: [-3, 5, 5] }" />
+
     <ngt-mesh
       #mesh
       cursorPointer
@@ -45,10 +49,14 @@ export class CursorPointer {
       <ngt-box-geometry />
       <ngt-mesh-basic-material [color]="hovered() ? 'hotpink' : 'orange'" />
     </ngt-mesh>
+
+    <ngt-grid-helper />
+
+    <ngts-orbit-controls />
   `,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CursorPointer],
+  imports: [CursorPointer, NgtsOrbitControls, NgtsPerspectiveCamera],
 })
 export class Experience {
   private meshRef = viewChild.required<ElementRef<Mesh>>('mesh');
@@ -57,7 +65,7 @@ export class Experience {
   protected clicked = signal(false);
 
   constructor() {
-    extend({ Mesh, BoxGeometry, MeshBasicMaterial });
+    extend({ Mesh, BoxGeometry, MeshBasicMaterial, GridHelper });
     injectBeforeRender(({ delta }) => {
       const mesh = this.meshRef().nativeElement;
       mesh.rotation.x += delta;
