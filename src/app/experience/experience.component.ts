@@ -33,7 +33,6 @@ export class CursorPointer {
 }
 
 @Component({
-  standalone: true,
   template: `
     <ngt-mesh
       #mesh

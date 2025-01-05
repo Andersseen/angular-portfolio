@@ -4,7 +4,6 @@ import { Experience } from './experience/experience.component';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
   template: `
     <ngt-canvas [sceneGraph]="sceneGraph" />
   `,
