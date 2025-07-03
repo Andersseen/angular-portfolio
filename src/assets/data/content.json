@@ -1,0 +1,242 @@
+{
+  "en": {
+    "hero": {
+      "greeting": "Hi, I'm Andrii",
+      "title": "Full-Stack Developer",
+      "description": "I craft exceptional digital experiences with modern technologies, focusing on clean code, scalable architecture, and user-centered design.",
+      "viewWork": "View My Work",
+      "contact": "Get In Touch"
+    },
+    "about": {
+      "title": "About Me",
+      "subtitle": "Passionate Developer & Problem Solver",
+      "paragraphs": [
+        "With over 5 years of experience in full-stack development, I specialize in creating robust, scalable web applications that deliver exceptional user experiences. My expertise spans modern JavaScript frameworks, cloud technologies, and agile development practices.",
+        "I believe in writing clean, maintainable code and following industry best practices. My approach combines technical excellence with creative problem-solving, ensuring that every project not only meets requirements but exceeds expectations.",
+        "When I'm not coding, I contribute to open-source projects, mentor junior developers, and stay current with emerging technologies. I'm passionate about continuous learning and sharing knowledge with the developer community."
+      ],
+      "stats": [
+        { "number": "50+", "label": "Projects Completed" },
+        { "number": "5+", "label": "Years Experience" },
+        { "number": "20+", "label": "Technologies" },
+        { "number": "100%", "label": "Client Satisfaction" }
+      ]
+    },
+    "skills": {
+      "title": "Skills & Expertise",
+      "subtitle": "Technologies I work with",
+      "categories": {
+        "frontend": "Frontend Development",
+        "backend": "Backend Development",
+        "tools": "Tools & Platforms",
+        "other": "Other Skills"
+      }
+    },
+    "projects": {
+      "title": "Featured Projects",
+      "subtitle": "Some of my recent work",
+      "demo": "Live Demo",
+      "code": "Source Code",
+      "viewAll": "View All Projects"
+    },
+    "contact": {
+      "title": "Let's Work Together",
+      "subtitle": "Ready to start your next project?",
+      "description": "I'm always interested in new opportunities and collaborations. Whether you have a project in mind or just want to connect, I'd love to hear from you.",
+      "form": {
+        "name": "Full Name",
+        "email": "Email Address",
+        "subject": "Subject",
+        "message": "Your Message",
+        "send": "Send Message",
+        "sending": "Sending...",
+        "success": "Message sent successfully!",
+        "error": "Failed to send message. Please try again."
+      },
+      "info": {
+        "email": "hello@Andriidev.com",
+        "phone": "+1 (555) 123-4567",
+        "location": "San Francisco, CA"
+      }
+    },
+    "footer": {
+      "tagline": "Creating digital experiences that matter",
+      "madeWith": "Built with",
+      "using": "using",
+      "rights": "All rights reserved.",
+      "links": {
+        "home": "Home",
+        "about": "About",
+        "projects": "Projects",
+        "contact": "Contact"
+      }
+    },
+    "navigation": {
+      "home": "Home",
+      "about": "About",
+      "skills": "Skills",
+      "projects": "Projects",
+      "contact": "Contact"
+    }
+  },
+  "es": {
+    "hero": {
+      "greeting": "Hola, soy Andrii",
+      "title": "Desarrollador Full-Stack",
+      "description": "Creo experiencias digitales excepcionales con tecnologías modernas, enfocándome en código limpio, arquitectura escalable y diseño centrado en el usuario.",
+      "viewWork": "Ver Mi Trabajo",
+      "contact": "Contactar"
+    },
+    "about": {
+      "title": "Sobre Mí",
+      "subtitle": "Desarrollador Apasionado y Solucionador de Problemas",
+      "paragraphs": [
+        "Con más de 5 años de experiencia en desarrollo full-stack, me especializo en crear aplicaciones web robustas y escalables que ofrecen experiencias de usuario excepcionales. Mi experiencia abarca frameworks modernos de JavaScript, tecnologías en la nube y prácticas de desarrollo ágil.",
+        "Creo en escribir código limpio y mantenible siguiendo las mejores prácticas de la industria. Mi enfoque combina excelencia técnica con resolución creativa de problemas, asegurando que cada proyecto no solo cumpla los requisitos sino que supere las expectativas.",
+        "Cuando no estoy programando, contribuyo a proyectos de código abierto, mentorizo desarrolladores junior y me mantengo actualizado con tecnologías emergentes. Me apasiona el aprendizaje continuo y compartir conocimiento con la comunidad de desarrolladores."
+      ],
+      "stats": [
+        { "number": "50+", "label": "Proyectos Completados" },
+        { "number": "5+", "label": "Años de Experiencia" },
+        { "number": "20+", "label": "Tecnologías" },
+        { "number": "100%", "label": "Satisfacción del Cliente" }
+      ]
+    },
+    "skills": {
+      "title": "Habilidades y Experiencia",
+      "subtitle": "Tecnologías con las que trabajo",
+      "categories": {
+        "frontend": "Desarrollo Frontend",
+        "backend": "Desarrollo Backend",
+        "tools": "Herramientas y Plataformas",
+        "other": "Otras Habilidades"
+      }
+    },
+    "projects": {
+      "title": "Proyectos Destacados",
+      "subtitle": "Algunos de mis trabajos recientes",
+      "demo": "Demo en Vivo",
+      "code": "Código Fuente",
+      "viewAll": "Ver Todos los Proyectos"
+    },
+    "contact": {
+      "title": "Trabajemos Juntos",
+      "subtitle": "¿Listo para comenzar tu próximo proyecto?",
+      "description": "Siempre estoy interesado en nuevas oportunidades y colaboraciones. Ya sea que tengas un proyecto en mente o simplemente quieras conectar, me encantaría saber de ti.",
+      "form": {
+        "name": "Nombre Completo",
+        "email": "Correo Electrónico",
+        "subject": "Asunto",
+        "message": "Tu Mensaje",
+        "send": "Enviar Mensaje",
+        "sending": "Enviando...",
+        "success": "¡Mensaje enviado exitosamente!",
+        "error": "Error al enviar el mensaje. Por favor intenta de nuevo."
+      },
+      "info": {
+        "email": "hola@Andriidev.com",
+        "phone": "+1 (555) 123-4567",
+        "location": "San Francisco, CA"
+      }
+    },
+    "footer": {
+      "tagline": "Creando experiencias digitales que importan",
+      "madeWith": "Construido con",
+      "using": "usando",
+      "rights": "Todos los derechos reservados.",
+      "links": {
+        "home": "Inicio",
+        "about": "Acerca",
+        "projects": "Proyectos",
+        "contact": "Contacto"
+      }
+    },
+    "navigation": {
+      "home": "Inicio",
+      "about": "Acerca",
+      "skills": "Habilidades",
+      "projects": "Proyectos",
+      "contact": "Contacto"
+    }
+  },
+  "ua": {
+    "hero": {
+      "greeting": "Привіт, я Andrii",
+      "title": "Full-Stack Розробник",
+      "description": "Я створюю виняткові цифрові досвіди з сучасними технологіями, зосереджуючись на чистому коді, масштабованій архітектурі та дизайні, орієнтованому на користувача.",
+      "viewWork": "Переглянути Роботи",
+      "contact": "Зв'язатися"
+    },
+    "about": {
+      "title": "Про Мене",
+      "subtitle": "Пристрасний Розробник і Вирішувач Проблем",
+      "paragraphs": [
+        "Маючи понад 5 років досвіду в full-stack розробці, я спеціалізуюся на створенні надійних, масштабованих веб-додатків, які забезпечують виняткові користувацькі досвіди. Моя експертиза охоплює сучасні JavaScript фреймворки, хмарні технології та гнучкі практики розробки.",
+        "Я вірю в написання чистого, підтримуваного коду та дотримання найкращих практик індустрії. Мій підхід поєднує технічну досконалість з творчим вирішенням проблем, забезпечуючи, що кожен проект не лише відповідає вимогам, але й перевершує очікування.",
+        "Коли я не програмую, я роблю внесок у проекти з відкритим кодом, менторю молодших розробників і слідкую за новими технологіями. Мене захоплює постійне навчання та обмін знаннями зі спільнотою розробників."
+      ],
+      "stats": [
+        { "number": "50+", "label": "Завершених Проектів" },
+        { "number": "5+", "label": "Років Досвіду" },
+        { "number": "20+", "label": "Технологій" },
+        { "number": "100%", "label": "Задоволення Клієнтів" }
+      ]
+    },
+    "skills": {
+      "title": "Навички та Експертиза",
+      "subtitle": "Технології, з якими я працюю",
+      "categories": {
+        "frontend": "Frontend Розробка",
+        "backend": "Backend Розробка",
+        "tools": "Інструменти та Платформи",
+        "other": "Інші Навички"
+      }
+    },
+    "projects": {
+      "title": "Виділені Проекти",
+      "subtitle": "Деякі з моїх останніх робіт",
+      "demo": "Живе Демо",
+      "code": "Вихідний Код",
+      "viewAll": "Переглянути Всі Проекти"
+    },
+    "contact": {
+      "title": "Давайте Працювати Разом",
+      "subtitle": "Готові розпочати ваш наступний проект?",
+      "description": "Мене завжди цікавлять нові можливості та співпраця. Чи маєте ви проект на думці, чи просто хочете зв'язатися, я буду радий почути від вас.",
+      "form": {
+        "name": "Повне Ім'я",
+        "email": "Електронна Адреса",
+        "subject": "Тема",
+        "message": "Ваше Повідомлення",
+        "send": "Надіслати Повідомлення",
+        "sending": "Надсилання...",
+        "success": "Повідомлення успішно надіслано!",
+        "error": "Не вдалося надіслати повідомлення. Спробуйте ще раз."
+      },
+      "info": {
+        "email": "привіт@Andriidev.com",
+        "phone": "+1 (555) 123-4567",
+        "location": "Сан-Франциско, Каліфорнія"
+      }
+    },
+    "footer": {
+      "tagline": "Створюю цифрові досвіди, які мають значення",
+      "madeWith": "Побудовано з",
+      "using": "використовуючи",
+      "rights": "Всі права захищені.",
+      "links": {
+        "home": "Головна",
+        "about": "Про мене",
+        "projects": "Проекти",
+        "contact": "Контакт"
+      }
+    },
+    "navigation": {
+      "home": "Головна",
+      "about": "Про мене",
+      "skills": "Навички",
+      "projects": "Проекти",
+      "contact": "Контакт"
+    }
+  }
+}
