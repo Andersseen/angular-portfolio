@@ -9,7 +9,7 @@ import Nav from './nav';
     <section class="min-h-screen bg-white transition-colors duration-300 dark:bg-neutral-900">
       <app-nav />
 
-      <ng-content />
+      <ng-content select="app-pages" />
 
       <app-footer />
     </section>
