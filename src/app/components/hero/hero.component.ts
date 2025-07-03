@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
+import BaseComponent from '../../shared/base.component';
 
 @Component({
   selector: 'app-hero',
   imports: [],
   template: `
     <section
+      id="home"
       class="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-neutral-50 via-white to-neutral-100 dark:from-neutral-900 dark:via-neutral-800 dark:to-neutral-900"
     >
       <!-- Background decoration -->
@@ -26,42 +28,57 @@ import { Component } from '@angular/core';
         <div class="animate-slide-up">
           <!-- Avatar -->
           <div class="animate-slide-up mb-8">
-            <div
-              class="mx-auto h-32 w-32 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 p-1 shadow-2xl"
-            ></div>
+            <div class="mx-auto h-32 w-32 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 p-1 shadow-2xl">
+              <img
+                src="linkedin_photo.jpg"
+                [alt]="portfolioService.personalInfo?.name"
+                class="h-full w-full rounded-full object-cover"
+              />
+            </div>
           </div>
 
           <h1 class="gradient-text animate-slide-up animate-delay-100 mb-4 text-5xl font-bold md:text-7xl">
-            hero.greeting
+            {{ getContent()?.hero.greeting }}
           </h1>
 
           <h2
             class="animate-slide-up animate-delay-200 mb-6 text-2xl font-semibold text-neutral-600 md:text-3xl dark:text-neutral-300"
           >
-            hero.title
+            {{ getContent()?.hero.title }}
           </h2>
 
           <p
             class="animate-slide-up animate-delay-300 mx-auto mb-12 max-w-3xl text-lg leading-relaxed text-neutral-600 md:text-xl dark:text-neutral-400"
           >
-            hero.description
+            {{ getContent()?.hero.description }}
           </p>
 
           <div class="animate-slide-up animate-delay-400 flex flex-col justify-center gap-4 sm:flex-row">
             <button
               class="transform rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:from-blue-700 hover:to-purple-700 hover:shadow-xl"
             >
-              hero?.viewWork
+              {{ getContent()?.hero?.viewWork }}
             </button>
             <button
               class="rounded-xl border-2 border-neutral-300 px-8 py-4 font-semibold text-neutral-700 transition-all duration-300 hover:border-neutral-400 hover:bg-neutral-50 dark:border-neutral-600 dark:text-neutral-300 dark:hover:border-neutral-500 dark:hover:bg-neutral-800"
             >
-              hero?.contact
+              {{ getContent()?.hero?.contact }}
             </button>
           </div>
+        </div>
+
+        <div class="animate-bounce-gentle mt-16">
+          <svg
+            class="mx-auto h-8 w-8 text-neutral-400 dark:text-neutral-500"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+          </svg>
         </div>
       </div>
     </section>
   `,
 })
-export default class HeroComponent {}
+export class HeroComponent extends BaseComponent {}

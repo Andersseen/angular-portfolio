@@ -1,15 +1,13 @@
 import { Component } from '@angular/core';
-import HeroComponent from '../components/hero/hero';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
+  imports: [RouterOutlet],
   template: `
-    <app-hero />
-    <!-- <ngt-canvas [sceneGraph]="sceneGraph" /> -->
+    <div class="bg-neutral-50 transition-colors duration-300 dark:bg-neutral-900">
+      <router-outlet />
+    </div>
   `,
-  host: { class: 'block h-dvh w-full' },
-  imports: [HeroComponent],
 })
-export class AppComponent {
-  // sceneGraph = Experience;
-}
+export default class App {}
