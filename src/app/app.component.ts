@@ -5,7 +5,9 @@ import { RouterOutlet } from '@angular/router';
   selector: 'app-root',
   imports: [RouterOutlet],
   template: `
-    <router-outlet />
+    <div class="bg-neutral-50 transition-colors duration-300 dark:bg-neutral-900">
+      <router-outlet />
+    </div>
   `,
 })
 export default class App {}

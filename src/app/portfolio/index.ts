@@ -3,6 +3,7 @@ import Layout from './layout';
 import Pages from './pages';
 
 @Component({
+  selector: 'app-portfolio',
   imports: [Layout, Pages],
   template: `
     <app-layout>

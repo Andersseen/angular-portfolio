@@ -6,7 +6,7 @@ import BaseComponent from '../../shared/base.component';
   selector: 'app-about',
   imports: [CommonModule],
   template: `
-    <section class="bg-white py-20 dark:bg-neutral-900">
+    <section id="about" class="py-20">
       <div class="container mx-auto px-6">
         <div class="mx-auto max-w-6xl">
           <div class="mb-16 text-center">

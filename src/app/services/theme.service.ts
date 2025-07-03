@@ -15,6 +15,8 @@ export class ThemeService {
 
     // Apply theme changes to document
     effect(() => {
+      console.log(`Applying theme: ${this.currentTheme()}`);
+
       this.applyTheme(this.currentTheme());
     });
   }
@@ -32,18 +34,17 @@ export class ThemeService {
 
   private applyTheme(theme: Theme) {
     const root = document.documentElement;
-
     if (theme === 'dark') {
       root.classList.add('dark');
     } else {
       root.classList.remove('dark');
     }
-
     localStorage.setItem('theme', theme);
   }
 
   toggleTheme() {
     const newTheme = this.currentTheme() === 'light' ? 'dark' : 'light';
+
     this.currentTheme.set(newTheme);
   }
 

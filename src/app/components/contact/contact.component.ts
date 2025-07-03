@@ -8,7 +8,10 @@ import BaseComponent from '../../shared/base.component';
   standalone: true,
   imports: [CommonModule, FormsModule],
   template: `
-    <section class="bg-gradient-to-br from-neutral-50 to-neutral-100 py-20 dark:from-neutral-800 dark:to-neutral-900">
+    <section
+      id="contact"
+      class="bg-gradient-to-br from-neutral-50 to-neutral-100 py-20 dark:from-neutral-800 dark:to-neutral-900"
+    >
       <div class="container mx-auto px-6">
         <div class="mx-auto max-w-6xl">
           <div class="mb-16 text-center">

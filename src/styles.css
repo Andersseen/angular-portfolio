@@ -1,1 +1,17 @@
 @import 'tailwindcss';
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@custom-variant dark (&:where(.dark, .dark *));
+@theme {
+  --color-primary: #2563eb;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+  }
+}

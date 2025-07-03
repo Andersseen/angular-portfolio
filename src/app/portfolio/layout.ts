@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import Footer from './footer';
-import Nav from './nav';
+import Navbar from './navbar';
 
 @Component({
   selector: 'app-layout',
-  imports: [Footer, Nav],
+  imports: [Footer, Navbar],
   template: `
-    <section class="min-h-screen bg-white transition-colors duration-300 dark:bg-neutral-900">
-      <app-nav />
+    <section class="min-h-screen">
+      <app-navbar />
 
       <ng-content select="app-pages" />
 

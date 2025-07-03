@@ -1,19 +1,18 @@
-import { Component, inject } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { LanguageService } from "../../services/language.service";
-import { ContentService } from "../../services/content.service";
-import { PortfolioService } from "../../services/portfolio.service";
+import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { ContentService } from '../../services/content.service';
+import { LanguageService } from '../../services/language.service';
+import { PortfolioService } from '../../services/portfolio.service';
 
 @Component({
-  selector: "app-skills",
-  standalone: true,
+  selector: 'app-skills',
   imports: [CommonModule],
   template: `
-    <section class="py-20 bg-neutral-50 dark:bg-neutral-800">
+    <section id="skills" class="py-20">
       <div class="container mx-auto px-6">
-        <div class="max-w-6xl mx-auto">
-          <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+        <div class="mx-auto max-w-6xl">
+          <div class="mb-16 text-center">
+            <h2 class="gradient-text mb-4 text-4xl font-bold md:text-5xl">
               {{ getContent()?.skills?.title }}
             </h2>
             <p class="text-xl text-neutral-600 dark:text-neutral-400">
@@ -21,40 +20,31 @@ import { PortfolioService } from "../../services/portfolio.service";
             </p>
           </div>
 
-          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             <div
               *ngFor="let category of getSkillCategories()"
-              class="bg-white dark:bg-neutral-900 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover-lift border border-neutral-100 dark:border-neutral-700"
+              class="hover-lift rounded-2xl border border-neutral-100 bg-white p-8 shadow-lg transition-all duration-300 hover:shadow-xl dark:border-neutral-700 dark:bg-neutral-900"
             >
-              <h3
-                class="text-xl font-bold mb-8 text-neutral-800 dark:text-neutral-200 text-center"
-              >
+              <h3 class="mb-8 text-center text-xl font-bold text-neutral-800 dark:text-neutral-200">
                 {{ category.name }}
               </h3>
               <div class="space-y-6">
                 <div *ngFor="let skill of category.skills" class="skill-item">
-                  <div class="flex justify-between items-center mb-3">
+                  <div class="mb-3 flex items-center justify-between">
+                    <span class="text-sm font-medium text-neutral-700 dark:text-neutral-300">{{ skill.name }}</span>
                     <span
-                      class="text-sm font-medium text-neutral-700 dark:text-neutral-300"
-                      >{{ skill.name }}</span
-                    >
-                    <span
-                      class="text-xs text-neutral-500 dark:text-neutral-400 bg-neutral-100 dark:bg-neutral-800 px-2 py-1 rounded-full"
+                      class="rounded-full bg-neutral-100 px-2 py-1 text-xs text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400"
                     >
                       {{ skill.level }}%
                     </span>
                   </div>
-                  <div
-                    class="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2"
-                  >
+                  <div class="h-2 w-full rounded-full bg-neutral-200 dark:bg-neutral-700">
                     <div
-                      class="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-1000 ease-out"
+                      class="h-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-1000 ease-out"
                       [style.width.%]="skill.level"
                     ></div>
                   </div>
-                  <div
-                    class="text-xs text-neutral-500 dark:text-neutral-400 mt-1"
-                  >
+                  <div class="mt-1 text-xs text-neutral-500 dark:text-neutral-400">
                     {{ skill.experience }}
                   </div>
                 </div>
@@ -84,19 +74,19 @@ export class SkillsComponent {
     return [
       {
         name: content.skills.categories.frontend,
-        skills: skills.filter((skill) => skill.category === "frontend"),
+        skills: skills.filter((skill) => skill.category === 'frontend'),
       },
       {
         name: content.skills.categories.backend,
-        skills: skills.filter((skill) => skill.category === "backend"),
+        skills: skills.filter((skill) => skill.category === 'backend'),
       },
       {
         name: content.skills.categories.tools,
-        skills: skills.filter((skill) => skill.category === "tools"),
+        skills: skills.filter((skill) => skill.category === 'tools'),
       },
       {
         name: content.skills.categories.other,
-        skills: skills.filter((skill) => skill.category === "other"),
+        skills: skills.filter((skill) => skill.category === 'other'),
       },
     ].filter((category) => category.skills.length > 0);
   }

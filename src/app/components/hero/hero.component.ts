@@ -6,6 +6,7 @@ import BaseComponent from '../../shared/base.component';
   imports: [],
   template: `
     <section
+      id="home"
       class="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-neutral-50 via-white to-neutral-100 dark:from-neutral-900 dark:via-neutral-800 dark:to-neutral-900"
     >
       <!-- Background decoration -->
