@@ -5,41 +5,41 @@ import BaseComponent from '../../shared/base.component';
   selector: 'app-projects',
   imports: [],
   template: `
-    <section class="bg-white py-20 dark:bg-neutral-900">
-      <div class="container mx-auto px-6">
+    <section id="projects" class="section-padding">
+      <div class="container-custom">
         <div class="mx-auto max-w-6xl">
           <div class="mb-16 text-center">
-            <h2 class="gradient-text mb-4 text-4xl font-bold md:text-5xl">
+            <h2 class="mb-6 text-4xl font-bold text-gray-900 md:text-5xl dark:text-white">
               {{ getContent()?.projects?.title }}
             </h2>
-            <p class="text-xl text-neutral-600 dark:text-neutral-400">
+            <div class="bg-primary-600 mx-auto mb-6 h-1 w-24 rounded-full"></div>
+            <p class="mx-auto max-w-3xl text-xl text-gray-600 dark:text-gray-300">
               {{ getContent()?.projects?.subtitle }}
             </p>
           </div>
 
           <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             @for (project of portfolioService.featuredProjects; track $index) {
-              <div
-                class="group hover-lift overflow-hidden rounded-2xl border border-neutral-100 bg-white shadow-lg transition-all duration-300 hover:shadow-2xl dark:border-neutral-700 dark:bg-neutral-800"
-              >
-                <div class="relative overflow-hidden">
+              <div class="card group overflow-hidden transition-all duration-300 hover:scale-105">
+                <!-- Project Image -->
+                <div class="relative h-48 overflow-hidden">
                   <img
                     [src]="project.image"
                     [alt]="project.title"
-                    class="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div
-                    class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                    class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                   ></div>
                   <div
-                    class="absolute right-4 bottom-4 left-4 translate-y-4 transform opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"
+                    class="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                   >
-                    <div class="flex gap-2">
-                      @if (project.githubUrl) {
+                    <div class="flex space-x-4">
+                      @if (project.demoUrl) {
                         <a
                           [href]="project.demoUrl"
                           target="_blank"
-                          class="rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-neutral-900 backdrop-blur-sm transition-colors hover:bg-white"
+                          class="rounded-full bg-white/20 p-3 text-white backdrop-blur-sm transition-colors duration-200 hover:bg-white/30"
                         >
                           {{ getContent()?.projects?.demo }}
                         </a>
@@ -48,49 +48,37 @@ import BaseComponent from '../../shared/base.component';
                         <a
                           [href]="project.githubUrl"
                           target="_blank"
-                          class="rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-neutral-900 backdrop-blur-sm transition-colors hover:bg-white"
+                          class="rounded-full bg-white/20 p-3 text-white backdrop-blur-sm transition-colors duration-200 hover:bg-white/30"
                         >
                           {{ getContent()?.projects?.code }}
                         </a>
                       }
                     </div>
                   </div>
-
-                  <!-- Status badge -->
-                  <div class="absolute top-4 right-4">
-                    <span class="rounded-full bg-green-500 px-3 py-1 text-xs font-medium text-white">
-                      {{ project.status }}
-                    </span>
-                  </div>
                 </div>
 
+                <!-- Project Content -->
                 <div class="p-6">
-                  <div class="mb-3 flex items-start justify-between">
-                    <h3 class="text-xl font-bold text-neutral-800 dark:text-neutral-200">
-                      {{ project.title }}
-                    </h3>
-                    <span
-                      class="rounded-full bg-neutral-100 px-2 py-1 text-sm text-neutral-500 dark:bg-neutral-700 dark:text-neutral-400"
-                    >
-                      {{ project.year }}
-                    </span>
-                  </div>
-
-                  <p class="mb-4 text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
+                  <h3
+                    class="group-hover:text-primary-600 dark:group-hover:text-primary-400 mb-3 text-xl font-semibold text-gray-900 transition-colors duration-200 dark:text-white"
+                  >
+                    {{ project.title }}
+                  </h3>
+                  <p class="mb-4 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
                     {{ project.description }}
                   </p>
 
                   <div class="mb-4 flex flex-wrap gap-2">
                     @for (tech of project.technologies; track $index) {
                       <span
-                        class="rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-800 dark:bg-blue-900/30 dark:text-blue-300"
+                        class="bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300 rounded-full px-3 py-1 text-xs font-medium"
                       >
                         {{ tech }}
                       </span>
                     }
                   </div>
 
-                  <div class="flex items-center justify-between text-sm text-neutral-500 dark:text-neutral-400">
+                  <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
                     <span>{{ project.client }}</span>
                     <span>{{ project.duration }}</span>
                   </div>
