@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { NgtCanvas } from 'angular-three';
-import { Experience } from './experience/experience.component';
+import HeroComponent from '../components/hero/hero';
 
 @Component({
   selector: 'app-root',
   template: `
-    <ngt-canvas [sceneGraph]="sceneGraph" />
+    <app-hero />
+    <!-- <ngt-canvas [sceneGraph]="sceneGraph" /> -->
   `,
   host: { class: 'block h-dvh w-full' },
-  imports: [NgtCanvas],
+  imports: [HeroComponent],
 })
 export class AppComponent {
-  sceneGraph = Experience;
+  // sceneGraph = Experience;
 }
