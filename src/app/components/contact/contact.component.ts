@@ -1,53 +1,41 @@
-import { Component, inject } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { FormsModule } from "@angular/forms";
-import { LanguageService } from "../../services/language.service";
-import { ContentService } from "../../services/content.service";
-import { PortfolioService } from "../../services/portfolio.service";
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import BaseComponent from '../../shared/base.component';
 
 @Component({
-  selector: "app-contact",
+  selector: 'app-contact',
   standalone: true,
   imports: [CommonModule, FormsModule],
   template: `
-    <section
-      class="py-20 bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-neutral-800 dark:to-neutral-900"
-    >
+    <section class="bg-gradient-to-br from-neutral-50 to-neutral-100 py-20 dark:from-neutral-800 dark:to-neutral-900">
       <div class="container mx-auto px-6">
-        <div class="max-w-6xl mx-auto">
-          <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+        <div class="mx-auto max-w-6xl">
+          <div class="mb-16 text-center">
+            <h2 class="gradient-text mb-4 text-4xl font-bold md:text-5xl">
               {{ getContent()?.contact.title }}
             </h2>
-            <p class="text-xl text-neutral-600 dark:text-neutral-400 mb-4">
+            <p class="mb-4 text-xl text-neutral-600 dark:text-neutral-400">
               {{ getContent()?.contact.subtitle }}
             </p>
-            <p
-              class="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto"
-            >
+            <p class="mx-auto max-w-2xl text-lg text-neutral-600 dark:text-neutral-400">
               {{ getContent()?.contact.description }}
             </p>
           </div>
 
-          <div class="grid lg:grid-cols-2 gap-12">
+          <div class="grid gap-12 lg:grid-cols-2">
             <!-- Contact Info -->
             <div class="space-y-8">
               <div
-                class="bg-white dark:bg-neutral-800 rounded-2xl p-8 shadow-lg border border-neutral-100 dark:border-neutral-700"
+                class="rounded-2xl border border-neutral-100 bg-white p-8 shadow-lg dark:border-neutral-700 dark:bg-neutral-800"
               >
-                <h3
-                  class="text-2xl font-bold mb-6 text-neutral-800 dark:text-neutral-200"
-                >
-                  Get in Touch
-                </h3>
+                <h3 class="mb-6 text-2xl font-bold text-neutral-800 dark:text-neutral-200">Get in Touch</h3>
 
                 <div class="space-y-6">
                   <div class="flex items-center gap-4">
-                    <div
-                      class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center"
-                    >
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 dark:bg-blue-900/30">
                       <svg
-                        class="w-6 h-6 text-blue-600 dark:text-blue-400"
+                        class="h-6 w-6 text-blue-600 dark:text-blue-400"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -61,11 +49,7 @@ import { PortfolioService } from "../../services/portfolio.service";
                       </svg>
                     </div>
                     <div>
-                      <div
-                        class="font-medium text-neutral-800 dark:text-neutral-200"
-                      >
-                        Email
-                      </div>
+                      <div class="font-medium text-neutral-800 dark:text-neutral-200">Email</div>
                       <div class="text-neutral-600 dark:text-neutral-400">
                         {{ portfolioService.personalInfo?.email }}
                       </div>
@@ -74,10 +58,10 @@ import { PortfolioService } from "../../services/portfolio.service";
 
                   <div class="flex items-center gap-4">
                     <div
-                      class="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center"
+                      class="flex h-12 w-12 items-center justify-center rounded-xl bg-green-100 dark:bg-green-900/30"
                     >
                       <svg
-                        class="w-6 h-6 text-green-600 dark:text-green-400"
+                        class="h-6 w-6 text-green-600 dark:text-green-400"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -91,11 +75,7 @@ import { PortfolioService } from "../../services/portfolio.service";
                       </svg>
                     </div>
                     <div>
-                      <div
-                        class="font-medium text-neutral-800 dark:text-neutral-200"
-                      >
-                        Phone
-                      </div>
+                      <div class="font-medium text-neutral-800 dark:text-neutral-200">Phone</div>
                       <div class="text-neutral-600 dark:text-neutral-400">
                         {{ portfolioService.personalInfo?.phone }}
                       </div>
@@ -104,10 +84,10 @@ import { PortfolioService } from "../../services/portfolio.service";
 
                   <div class="flex items-center gap-4">
                     <div
-                      class="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-center justify-center"
+                      class="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-100 dark:bg-purple-900/30"
                     >
                       <svg
-                        class="w-6 h-6 text-purple-600 dark:text-purple-400"
+                        class="h-6 w-6 text-purple-600 dark:text-purple-400"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -127,11 +107,7 @@ import { PortfolioService } from "../../services/portfolio.service";
                       </svg>
                     </div>
                     <div>
-                      <div
-                        class="font-medium text-neutral-800 dark:text-neutral-200"
-                      >
-                        Location
-                      </div>
+                      <div class="font-medium text-neutral-800 dark:text-neutral-200">Location</div>
                       <div class="text-neutral-600 dark:text-neutral-400">
                         {{ portfolioService.personalInfo?.location }}
                       </div>
@@ -142,26 +118,18 @@ import { PortfolioService } from "../../services/portfolio.service";
 
               <!-- Social Links -->
               <div
-                class="bg-white dark:bg-neutral-800 rounded-2xl p-8 shadow-lg border border-neutral-100 dark:border-neutral-700"
+                class="rounded-2xl border border-neutral-100 bg-white p-8 shadow-lg dark:border-neutral-700 dark:bg-neutral-800"
               >
-                <h3
-                  class="text-xl font-bold mb-6 text-neutral-800 dark:text-neutral-200"
-                >
-                  Connect With Me
-                </h3>
+                <h3 class="mb-6 text-xl font-bold text-neutral-800 dark:text-neutral-200">Connect With Me</h3>
                 <div class="flex flex-wrap gap-4">
                   <a
                     *ngFor="let social of portfolioService.socialLinks"
                     [href]="social.url"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="flex items-center gap-3 px-4 py-3 bg-neutral-50 dark:bg-neutral-700 rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-600 transition-all duration-300 hover-lift"
+                    class="hover-lift flex items-center gap-3 rounded-xl bg-neutral-50 px-4 py-3 transition-all duration-300 hover:bg-neutral-100 dark:bg-neutral-700 dark:hover:bg-neutral-600"
                   >
-                    <svg
-                      class="w-5 h-5 text-neutral-600 dark:text-neutral-400"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
+                    <svg class="h-5 w-5 text-neutral-600 dark:text-neutral-400" fill="currentColor" viewBox="0 0 24 24">
                       <path
                         *ngIf="social.icon === 'github'"
                         d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
@@ -175,10 +143,7 @@ import { PortfolioService } from "../../services/portfolio.service";
                         d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"
                       />
                     </svg>
-                    <span
-                      class="text-sm font-medium text-neutral-700 dark:text-neutral-300"
-                      >{{ social.name }}</span
-                    >
+                    <span class="text-sm font-medium text-neutral-700 dark:text-neutral-300">{{ social.name }}</span>
                   </a>
                 </div>
               </div>
@@ -186,19 +151,15 @@ import { PortfolioService } from "../../services/portfolio.service";
 
             <!-- Contact Form -->
             <div
-              class="bg-white dark:bg-neutral-800 rounded-2xl p-8 shadow-lg border border-neutral-100 dark:border-neutral-700"
+              class="rounded-2xl border border-neutral-100 bg-white p-8 shadow-lg dark:border-neutral-700 dark:bg-neutral-800"
             >
-              <h3
-                class="text-2xl font-bold mb-6 text-neutral-800 dark:text-neutral-200"
-              >
+              <h3 class="mb-6 text-2xl font-bold text-neutral-800 dark:text-neutral-200">
                 {{ getContent()?.contact.form.send }}
               </h3>
               <form class="space-y-6" (ngSubmit)="onSubmit()">
-                <div class="grid md:grid-cols-2 gap-6">
+                <div class="grid gap-6 md:grid-cols-2">
                   <div>
-                    <label
-                      class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2"
-                    >
+                    <label class="mb-2 block text-sm font-medium text-neutral-700 dark:text-neutral-300">
                       {{ getContent()?.contact.form.name }}
                     </label>
                     <input
@@ -206,13 +167,11 @@ import { PortfolioService } from "../../services/portfolio.service";
                       [(ngModel)]="formData.name"
                       name="name"
                       required
-                      class="w-full px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100"
+                      class="w-full rounded-xl border border-neutral-300 bg-white px-4 py-3 text-neutral-900 transition-all duration-200 focus:border-transparent focus:ring-2 focus:ring-blue-500 dark:border-neutral-600 dark:bg-neutral-700 dark:text-neutral-100"
                     />
                   </div>
                   <div>
-                    <label
-                      class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2"
-                    >
+                    <label class="mb-2 block text-sm font-medium text-neutral-700 dark:text-neutral-300">
                       {{ getContent()?.contact.form.email }}
                     </label>
                     <input
@@ -220,14 +179,12 @@ import { PortfolioService } from "../../services/portfolio.service";
                       [(ngModel)]="formData.email"
                       name="email"
                       required
-                      class="w-full px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100"
+                      class="w-full rounded-xl border border-neutral-300 bg-white px-4 py-3 text-neutral-900 transition-all duration-200 focus:border-transparent focus:ring-2 focus:ring-blue-500 dark:border-neutral-600 dark:bg-neutral-700 dark:text-neutral-100"
                     />
                   </div>
                 </div>
                 <div>
-                  <label
-                    class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2"
-                  >
+                  <label class="mb-2 block text-sm font-medium text-neutral-700 dark:text-neutral-300">
                     {{ getContent()?.contact.form.subject }}
                   </label>
                   <input
@@ -235,13 +192,11 @@ import { PortfolioService } from "../../services/portfolio.service";
                     [(ngModel)]="formData.subject"
                     name="subject"
                     required
-                    class="w-full px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100"
+                    class="w-full rounded-xl border border-neutral-300 bg-white px-4 py-3 text-neutral-900 transition-all duration-200 focus:border-transparent focus:ring-2 focus:ring-blue-500 dark:border-neutral-600 dark:bg-neutral-700 dark:text-neutral-100"
                   />
                 </div>
                 <div>
-                  <label
-                    class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2"
-                  >
+                  <label class="mb-2 block text-sm font-medium text-neutral-700 dark:text-neutral-300">
                     {{ getContent()?.contact.form.message }}
                   </label>
                   <textarea
@@ -249,20 +204,16 @@ import { PortfolioService } from "../../services/portfolio.service";
                     name="message"
                     required
                     rows="5"
-                    class="w-full px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100"
+                    class="w-full resize-none rounded-xl border border-neutral-300 bg-white px-4 py-3 text-neutral-900 transition-all duration-200 focus:border-transparent focus:ring-2 focus:ring-blue-500 dark:border-neutral-600 dark:bg-neutral-700 dark:text-neutral-100"
                   ></textarea>
                 </div>
                 <button
                   type="submit"
                   [disabled]="isSubmitting"
-                  class="w-full px-6 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  class="w-full transform rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-4 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:from-blue-700 hover:to-purple-700 hover:shadow-xl disabled:transform-none disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  <span *ngIf="!isSubmitting">{{
-                    getContent()?.contact.form.send
-                  }}</span>
-                  <span *ngIf="isSubmitting">{{
-                    getContent()?.contact.form.sending
-                  }}</span>
+                  <span *ngIf="!isSubmitting">{{ getContent()?.contact.form.send }}</span>
+                  <span *ngIf="isSubmitting">{{ getContent()?.contact.form.sending }}</span>
                 </button>
               </form>
             </div>
@@ -272,23 +223,15 @@ import { PortfolioService } from "../../services/portfolio.service";
     </section>
   `,
 })
-export class ContactComponent {
-  languageService = inject(LanguageService);
-  contentService = inject(ContentService);
-  portfolioService = inject(PortfolioService);
-
+export class ContactComponent extends BaseComponent {
   formData = {
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
   };
 
   isSubmitting = false;
-
-  getContent(): any {
-    return this.contentService.getContent(this.languageService.language());
-  }
 
   onSubmit() {
     this.isSubmitting = true;
@@ -298,10 +241,10 @@ export class ContactComponent {
       this.isSubmitting = false;
       // Reset form
       this.formData = {
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
+        name: '',
+        email: '',
+        subject: '',
+        message: '',
       };
       alert(this.getContent()?.contact.form.success);
     }, 2000);

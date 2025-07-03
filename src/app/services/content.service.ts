@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import content from '../../assets/data/content.json';
-import { ContentData, Language } from '../types/portfolio.types';
+import { ContentData, Language } from '../shared/portfolio.types';
 
 @Injectable({
   providedIn: 'root',

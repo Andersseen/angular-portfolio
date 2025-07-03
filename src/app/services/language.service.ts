@@ -1,16 +1,16 @@
 import { Injectable, signal } from '@angular/core';
-import { Language, LanguageOption } from '../types/portfolio.types';
+import { Language, LanguageOption } from '../shared/portfolio.types';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LanguageService {
   private currentLanguage = signal<Language>('en');
-  
+
   readonly languages: LanguageOption[] = [
     { code: 'en', name: 'English', flag: '🇺🇸' },
     { code: 'es', name: 'Español', flag: '🇪🇸' },
-    { code: 'ua', name: 'Українська', flag: '🇺🇦' }
+    { code: 'ua', name: 'Українська', flag: '🇺🇦' },
   ];
 
   readonly language = this.currentLanguage.asReadonly();
@@ -23,7 +23,7 @@ export class LanguageService {
   private initializeLanguage() {
     const savedLanguage = localStorage.getItem('language') as Language;
     const browserLanguage = navigator.language.split('-')[0] as Language;
-    
+
     if (savedLanguage && this.isValidLanguage(savedLanguage)) {
       this.currentLanguage.set(savedLanguage);
     } else if (this.isValidLanguage(browserLanguage)) {
@@ -45,6 +45,6 @@ export class LanguageService {
   }
 
   getCurrentLanguageInfo() {
-    return this.languages.find(lang => lang.code === this.currentLanguage()) || this.languages[0];
+    return this.languages.find((lang) => lang.code === this.currentLanguage()) || this.languages[0];
   }
 }

@@ -1,19 +1,16 @@
-import { Component, inject } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { LanguageService } from "../../services/language.service";
-import { ContentService } from "../../services/content.service";
-import { PortfolioService } from "../../services/portfolio.service";
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import BaseComponent from '../../shared/base.component';
 
 @Component({
-  selector: "app-about",
-  standalone: true,
+  selector: 'app-about',
   imports: [CommonModule],
   template: `
-    <section class="py-20 bg-white dark:bg-neutral-900">
+    <section class="bg-white py-20 dark:bg-neutral-900">
       <div class="container mx-auto px-6">
-        <div class="max-w-6xl mx-auto">
-          <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+        <div class="mx-auto max-w-6xl">
+          <div class="mb-16 text-center">
+            <h2 class="gradient-text mb-4 text-4xl font-bold md:text-5xl">
               {{ getContent()?.about.title }}
             </h2>
             <p class="text-xl text-neutral-600 dark:text-neutral-400">
@@ -21,27 +18,25 @@ import { PortfolioService } from "../../services/portfolio.service";
             </p>
           </div>
 
-          <div class="grid lg:grid-cols-2 gap-16 items-center">
+          <div class="grid items-center gap-16 lg:grid-cols-2">
             <div class="space-y-6">
               <p
                 *ngFor="let paragraph of getContent()?.about.paragraphs"
-                class="text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed"
+                class="text-lg leading-relaxed text-neutral-600 dark:text-neutral-400"
               >
                 {{ paragraph }}
               </p>
 
               <!-- Stats -->
-              <div class="grid grid-cols-2 gap-6 mt-12">
+              <div class="mt-12 grid grid-cols-2 gap-6">
                 <div
                   *ngFor="let stat of getContent()?.about.stats"
-                  class="text-center p-6 bg-neutral-50 dark:bg-neutral-800 rounded-xl hover:shadow-lg transition-all duration-300"
+                  class="rounded-xl bg-neutral-50 p-6 text-center transition-all duration-300 hover:shadow-lg dark:bg-neutral-800"
                 >
-                  <div class="text-3xl font-bold gradient-text mb-2">
+                  <div class="gradient-text mb-2 text-3xl font-bold">
                     {{ stat.number }}
                   </div>
-                  <div
-                    class="text-sm text-neutral-600 dark:text-neutral-400 font-medium"
-                  >
+                  <div class="text-sm font-medium text-neutral-600 dark:text-neutral-400">
                     {{ stat.label }}
                   </div>
                 </div>
@@ -51,33 +46,33 @@ import { PortfolioService } from "../../services/portfolio.service";
             <div class="relative">
               <div class="relative">
                 <div
-                  class="w-full max-w-md mx-auto aspect-square rounded-2xl bg-gradient-to-br from-blue-400 to-purple-500 p-1 shadow-2xl"
+                  class="mx-auto aspect-square w-full max-w-md rounded-2xl bg-gradient-to-br from-blue-400 to-purple-500 p-1 shadow-2xl"
                 >
                   <div
-                    class="w-full h-full rounded-2xl bg-white dark:bg-neutral-800 flex items-center justify-center overflow-hidden"
+                    class="flex h-full w-full items-center justify-center overflow-hidden rounded-2xl bg-white dark:bg-neutral-800"
                   >
                     <img
-                      [src]="portfolioService.personalInfo?.avatar"
+                      src="linkedin_photo.jpg"
                       [alt]="portfolioService.personalInfo?.name"
-                      class="w-full h-full object-cover"
+                      class="h-full w-full object-cover"
                     />
                   </div>
                 </div>
 
                 <!-- Floating elements -->
                 <div
-                  class="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center animate-float shadow-lg"
+                  class="animate-float absolute -top-4 -right-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-yellow-400 to-orange-500 shadow-lg"
                 >
                   <span class="text-2xl">🚀</span>
                 </div>
                 <div
-                  class="absolute -bottom-4 -left-4 w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-500 rounded-2xl flex items-center justify-center animate-float shadow-lg"
+                  class="animate-float absolute -bottom-4 -left-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-green-400 to-emerald-500 shadow-lg"
                   style="animation-delay: 1s;"
                 >
                   <span class="text-2xl">💡</span>
                 </div>
                 <div
-                  class="absolute top-1/2 -right-8 w-12 h-12 bg-gradient-to-br from-pink-400 to-rose-500 rounded-xl flex items-center justify-center animate-float shadow-lg"
+                  class="animate-float absolute top-1/2 -right-8 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-pink-400 to-rose-500 shadow-lg"
                   style="animation-delay: 2s;"
                 >
                   <span class="text-xl">⚡</span>
@@ -90,12 +85,4 @@ import { PortfolioService } from "../../services/portfolio.service";
     </section>
   `,
 })
-export class AboutComponent {
-  languageService = inject(LanguageService);
-  contentService = inject(ContentService);
-  portfolioService = inject(PortfolioService);
-
-  getContent(): any {
-    return this.contentService.getContent(this.languageService.language());
-  }
-}
+export class AboutComponent extends BaseComponent {}

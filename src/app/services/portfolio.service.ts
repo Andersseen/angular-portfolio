@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import portfolioJson from '../../assets/data/portfolio.json';
-import { PortfolioData } from '../types/portfolio.types';
+import { PortfolioData } from '../shared/portfolio.types';
 
 @Injectable({
   providedIn: 'root',
