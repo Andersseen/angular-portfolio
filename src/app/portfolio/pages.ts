@@ -15,6 +15,7 @@ import { SkillsComponent } from '../components/skills/skills.component';
       <app-about />
       <app-skills />
       <app-projects /> -->
+
       <app-bloom />
     </main>
   `,
