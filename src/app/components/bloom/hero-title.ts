@@ -12,7 +12,7 @@ import { Component, computed, input, signal } from '@angular/core';
         [style.transform]="transform3D()"
       >
         <div class="flex">
-          @for (char of characters(); track char; let i = $index) {
+          @for (char of characters(); track $index; let i = $index) {
             <span
               [class.text-primary-400]="char !== ' '"
               class="animate-slide-in inline-block"
