@@ -8,14 +8,14 @@ import Navbar from './navbar';
   imports: [Footer, Navbar, StickyCursorComponent],
   template: `
     <section class="min-h-screen">
-      <app-navbar />
-      <button #target class="bg-primary-500 h-32 w-32 rounded-md">Hover me</button>
+      <!-- <app-navbar /> -->
+      <!-- <button #target class="bg-primary-500 h-32 w-32 rounded-md">Hover me</button> -->
       <ng-content select="app-pages" />
 
-      <app-footer />
+      <!-- <app-footer /> -->
     </section>
 
-    <and-sticky-cursor [stickyElement]="el()" />
+    <!-- <and-sticky-cursor [stickyElement]="el()" /> -->
   `,
 })
 export default class Layout {
