@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
+import { LanguageSwitcherComponent } from '../components/language-switcher/language-switcher.component';
 import { ThemeSwitcherComponent } from '../components/theme-switcher/theme-switcher.component';
 
 @Component({
   selector: 'app-layout',
-  imports: [ThemeSwitcherComponent],
+  imports: [ThemeSwitcherComponent, LanguageSwitcherComponent],
   template: `
     <section class="min-h-screen bg-neutral-100 dark:bg-neutral-900">
       <app-theme-switcher />
+      <app-language-switcher />
       <ng-content select="app-pages" />
     </section>
   `,
