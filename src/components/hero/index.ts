@@ -1,5 +1,5 @@
+import BaseComponent from '@/shared/base.component';
 import { Component } from '@angular/core';
-import BaseComponent from '../../shared/base.component';
 
 @Component({
   selector: 'app-hero',
@@ -81,4 +81,4 @@ import BaseComponent from '../../shared/base.component';
     </section>
   `,
 })
-export class HeroComponent extends BaseComponent {}
+export default class HeroComponent extends BaseComponent {}

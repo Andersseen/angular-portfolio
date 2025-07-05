@@ -48,9 +48,9 @@ import { Component, output } from '@angular/core';
 export default class Navbar {
   public navigateTo = output<string>();
   public sectionList = [
-    { path: 'home/hero', label: 'Hero' },
-    { path: 'home/about', label: 'About' },
-    { path: 'home/projects', label: 'Projects' },
-    { path: 'home/contact', label: 'Contact' },
+    { path: 'hero', label: 'Hero' },
+    { path: 'about', label: 'About' },
+    { path: 'projects', label: 'Projects' },
+    { path: 'contact', label: 'Contact' },
   ];
 }

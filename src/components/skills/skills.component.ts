@@ -1,8 +1,8 @@
+import { ContentService } from '@/services/content.service';
+import { LanguageService } from '@/services/language.service';
+import { PortfolioService } from '@/services/portfolio.service';
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { ContentService } from '../../services/content.service';
-import { LanguageService } from '../../services/language.service';
-import { PortfolioService } from '../../services/portfolio.service';
 
 @Component({
   selector: 'app-skills',

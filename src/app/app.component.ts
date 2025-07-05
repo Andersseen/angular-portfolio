@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import Layout from './layout';
+import Pages from './pages';
 
 @Component({
-  selector: 'app-root',
-  imports: [RouterOutlet],
+  selector: 'app-portfolio',
+  imports: [Layout, Pages],
   template: `
-    <div class="bg-neutral-50 transition-colors duration-300 dark:bg-neutral-900">
-      <router-outlet />
-    </div>
+    <app-layout>
+      <app-pages />
+    </app-layout>
   `,
 })
 export default class App {}

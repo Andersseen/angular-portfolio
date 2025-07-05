@@ -29,11 +29,11 @@ export default class Pages {
 
   public direction = signal<'up' | 'down'>('down');
 
-  sectionList = [
-    { path: 'home/hero', label: 'Hero' },
-    { path: 'home/about', label: 'About' },
-    { path: 'home/projects', label: 'Projects' },
-    { path: 'home/contact', label: 'Contact' },
+  public sectionList = [
+    { path: 'hero', label: 'Hero' },
+    { path: 'about', label: 'About' },
+    { path: 'projects', label: 'Projects' },
+    { path: 'contact', label: 'Contact' },
   ];
 
   private scrollTimeout: any = null;

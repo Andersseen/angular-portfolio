@@ -1,7 +1,7 @@
+import BaseComponent from '@/shared/base.component';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import BaseComponent from '../../shared/base.component';
 
 @Component({
   selector: 'app-contact',
@@ -226,7 +226,7 @@ import BaseComponent from '../../shared/base.component';
     </section>
   `,
 })
-export class ContactComponent extends BaseComponent {
+export default class ContactComponent extends BaseComponent {
   formData = {
     name: '',
     email: '',
