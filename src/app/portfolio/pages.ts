@@ -1,31 +1,39 @@
-import { CommonModule } from '@angular/common';
-import { Component, DestroyRef, effect, inject } from '@angular/core';
+import { NgClass } from '@angular/common';
+import { Component, DestroyRef, effect, inject, signal } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-pages',
-  standalone: true,
-  imports: [CommonModule, RouterModule],
-  template: `
-    <main class="relative h-screen w-screen overflow-hidden bg-white text-black">
-      <router-outlet />
 
+  imports: [NgClass, RouterModule],
+  template: `
+    <main class="relative h-screen w-screen overflow-hidden bg-white text-black" [ngClass]="'pages-' + direction()">
+      <router-outlet />
       <div class="fixed right-6 bottom-6 z-50 flex flex-col gap-2">
-        <button
-          *ngFor="let section of sectionList"
-          class="rounded bg-black px-4 py-2 text-white"
-          (click)="navigateTo(section.path)"
-        >
-          Ir a {{ section.label }}
-        </button>
+        @for (section of sectionList; track $index) {
+          <button class="rounded bg-black px-4 py-2 text-white" (click)="navigateTo(section.path)">
+            Ir a {{ section.label }}
+          </button>
+        }
       </div>
     </main>
   `,
-  styles: [``],
+  styles: [
+    `
+      main.pages-down {
+        view-transition-name: pages-down;
+      }
+      main.pages-up {
+        view-transition-name: pages-up;
+      }
+    `,
+  ],
 })
 export class PagesComponent {
   private router = inject(Router);
   private destroyRef = inject(DestroyRef);
+
+  public direction = signal<'up' | 'down'>('down');
 
   sectionList = [
     { path: 'home/hero', label: 'Hero' },
@@ -41,7 +49,6 @@ export class PagesComponent {
     // Listen to wheel and touch
     effect(() => {
       const wheelHandler = (e: WheelEvent) => this.handleScroll(e.deltaY);
-
       const touchMoveHandler = (e: TouchEvent) => {
         if (this.lastTouchY === null) {
           this.lastTouchY = e.touches[0].clientY;
@@ -52,7 +59,6 @@ export class PagesComponent {
         this.handleScroll(deltaY);
         this.lastTouchY = e.touches[0].clientY;
       };
-
       const touchEndHandler = () => (this.lastTouchY = null);
 
       window.addEventListener('wheel', wheelHandler);
@@ -81,12 +87,13 @@ export class PagesComponent {
     return this.sectionList.findIndex((s) => s.path === url);
   }
 
-  private navigateScroll(direction: 'up' | 'down') {
+  private navigateScroll(dir: 'up' | 'down') {
     const index = this.currentIndex;
+    this.direction.set(dir);
 
-    if (direction === 'down' && index < this.sectionList.length - 1) {
+    if (dir === 'down' && index < this.sectionList.length - 1) {
       this.navigateTo(this.sectionList[index + 1].path);
-    } else if (direction === 'up' && index > 0) {
+    } else if (dir === 'up' && index > 0) {
       this.navigateTo(this.sectionList[index - 1].path);
     }
   }
