@@ -7,7 +7,7 @@ import Navbar from './navbar';
   selector: 'app-pages',
   imports: [NgClass, RouterModule, Navbar],
   template: `
-    <main class="relative h-screen w-screen overflow-hidden" [ngClass]="'pages-' + direction()">
+    <main class="relative h-screen w-screen" [ngClass]="'pages-' + direction()">
       <router-outlet />
     </main>
     <app-navbar (navigateTo)="navigateTo($event)" />

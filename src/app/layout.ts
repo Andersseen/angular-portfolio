@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   selector: 'app-layout',
   imports: [ThemeSwitcherComponent, LanguageSwitcherComponent],
   template: `
-    <section class="min-h-screen bg-neutral-100 dark:bg-neutral-900">
+    <section class="overflow-hidden bg-neutral-50 transition-colors duration-300 dark:bg-neutral-900">
       <app-theme-switcher />
       <app-language-switcher />
       <ng-content select="app-pages" />
