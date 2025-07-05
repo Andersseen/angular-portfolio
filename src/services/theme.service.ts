@@ -1,5 +1,5 @@
+import { Theme } from '@/shared/portfolio.types';
 import { effect, Injectable, signal } from '@angular/core';
-import { Theme } from '../shared/portfolio.types';
 
 @Injectable({
   providedIn: 'root',

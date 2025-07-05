@@ -1,15 +1,14 @@
+import { ThemeService } from '@/services/theme.service';
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-theme-switcher',
-  standalone: true,
   imports: [CommonModule],
   template: `
     <button
       (click)="themeService.toggleTheme()"
-      class="rounded-full border border-neutral-200 bg-neutral-100 p-3 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl dark:border-neutral-700 dark:bg-neutral-800"
+      class="transition-fixed top-5 left-5 z-50 rounded-full border border-neutral-200 bg-neutral-100 p-3 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl dark:border-neutral-700 dark:bg-neutral-800"
       [attr.aria-label]="themeService.theme() === 'light' ? 'Switch to dark mode' : 'Switch to light mode'"
     >
       <div class="relative h-6 w-6">
@@ -51,6 +50,14 @@ import { ThemeService } from '../../services/theme.service';
       </div>
     </button>
   `,
+  styles: [
+    `
+      .transition-fixed {
+        position: fixed;
+        view-transition-name: theme-switcher;
+      }
+    `,
+  ],
 })
 export class ThemeSwitcherComponent {
   themeService = inject(ThemeService);

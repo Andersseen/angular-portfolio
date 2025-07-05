@@ -1,6 +1,6 @@
+import BaseComponent from '@/shared/base.component';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import BaseComponent from '../../shared/base.component';
 
 @Component({
   selector: 'app-about',
@@ -85,4 +85,4 @@ import BaseComponent from '../../shared/base.component';
     </section>
   `,
 })
-export class AboutComponent extends BaseComponent {}
+export default class AboutComponent extends BaseComponent {}
