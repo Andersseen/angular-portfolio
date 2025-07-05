@@ -15,8 +15,8 @@
     font-family: 'Inter', sans-serif;
   }
 }
-
-::view-transition-group(fixed) {
+::view-transition-group(theme-switcher),
+::view-transition-group(navbar) {
   z-index: 100;
 }
 ::view-transition-group(pages-down),
