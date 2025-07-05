@@ -9,7 +9,7 @@ const appRoutes: Routes = [
   {
     path: 'home',
     title: 'Home',
-    loadComponent: () => import('./portfolio'),
+    loadChildren: () => import('./portfolio/routes'),
   },
 ];
 export default appRoutes;

@@ -1,83 +1,58 @@
 import { CommonModule } from '@angular/common';
-import { Component, DestroyRef, effect, inject, signal } from '@angular/core';
-import { slideBounceAnimation } from './slide-bounce-directional.animation';
+import { Component, DestroyRef, effect, inject } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-pages',
   standalone: true,
-  imports: [CommonModule],
-  animations: [slideBounceAnimation],
+  imports: [CommonModule, RouterModule],
   template: `
-    <div class="relative h-screen overflow-hidden">
-      <!-- HEADER -->
-      <div class="absolute top-0 right-0 left-0 z-50">
-        <div class="flex h-16 items-center justify-center bg-black text-white">HEADER</div>
-      </div>
+    <main class="relative h-screen w-screen overflow-hidden bg-white text-black">
+      <router-outlet />
 
-      <!-- SECTIONS -->
-      <ng-container *ngFor="let section of sections; let i = index">
-        <div
-          *ngIf="i === currentSection()"
-          [@slideBounce]="direction()"
-          class="absolute top-0 left-0 flex h-screen w-full items-center justify-center transition-all"
-          [ngClass]="{
-            'bg-blue-100': i === 0,
-            'bg-green-100': i === 1,
-            'bg-yellow-100': i === 2,
-            'bg-black text-white': i === 3,
-          }"
+      <div class="fixed right-6 bottom-6 z-50 flex flex-col gap-2">
+        <button
+          *ngFor="let section of sectionList"
+          class="rounded bg-black px-4 py-2 text-white"
+          (click)="navigateTo(section.path)"
         >
-          <h1 class="text-5xl font-bold">{{ section.content }}</h1>
-        </div>
-      </ng-container>
-
-      <!-- FOOTER -->
-      <footer
-        *ngIf="showFooter()"
-        @slideBounce
-        class="absolute right-0 bottom-0 left-0 flex h-screen items-center justify-center bg-neutral-900 text-4xl text-white"
-      >
-        FOOTER 🎉
-      </footer>
-
-      <!-- SECTION JUMP NAV -->
-      <div class="fixed right-6 bottom-6 z-50 flex flex-col gap-4">
-        <button class="rounded bg-black px-4 py-2 text-white" *ngFor="let i of [0, 1, 2, 3]" (click)="goTo(i)">
-          Ir a {{ i + 1 }}
+          Ir a {{ section.label }}
         </button>
       </div>
-    </div>
+    </main>
   `,
+  styles: [``],
 })
-export default class Pages {
-  currentSection = signal(0);
-  direction = signal<'up' | 'down'>('down');
-  showFooter = signal(false);
-  footerScroll = signal(false);
+export class PagesComponent {
+  private router = inject(Router);
+  private destroyRef = inject(DestroyRef);
 
-  readonly sections = [
-    { content: 'NoiseBloom' },
-    { content: 'About' },
-    { content: 'Projects' },
-    { content: 'Contact' },
+  sectionList = [
+    { path: 'home/hero', label: 'Hero' },
+    { path: 'home/about', label: 'About' },
+    { path: 'home/projects', label: 'Projects' },
+    { path: 'home/contact', label: 'Contact' },
   ];
 
-  private destroyRef = inject(DestroyRef);
   private scrollTimeout: any = null;
   private lastTouchY: number | null = null;
 
   constructor() {
+    // Listen to wheel and touch
     effect(() => {
       const wheelHandler = (e: WheelEvent) => this.handleScroll(e.deltaY);
+
       const touchMoveHandler = (e: TouchEvent) => {
         if (this.lastTouchY === null) {
           this.lastTouchY = e.touches[0].clientY;
           return;
         }
+
         const deltaY = this.lastTouchY - e.touches[0].clientY;
         this.handleScroll(deltaY);
         this.lastTouchY = e.touches[0].clientY;
       };
+
       const touchEndHandler = () => (this.lastTouchY = null);
 
       window.addEventListener('wheel', wheelHandler);
@@ -95,44 +70,32 @@ export default class Pages {
 
   private handleScroll(deltaY: number) {
     if (this.scrollTimeout) clearTimeout(this.scrollTimeout);
+
     this.scrollTimeout = setTimeout(() => {
-      if (deltaY > 0) {
-        this.scrollDown();
-      } else {
-        this.scrollUp();
-      }
+      this.navigateScroll(deltaY > 0 ? 'down' : 'up');
     }, 100);
   }
 
-  private scrollDown() {
-    this.direction.set('down');
-    if (this.currentSection() < this.sections.length - 1) {
-      this.currentSection.update((i) => i + 1);
-      this.showFooter.set(false);
+  private get currentIndex(): number {
+    const url = this.router.url.replace('/', '');
+    return this.sectionList.findIndex((s) => s.path === url);
+  }
+
+  private navigateScroll(direction: 'up' | 'down') {
+    const index = this.currentIndex;
+
+    if (direction === 'down' && index < this.sectionList.length - 1) {
+      this.navigateTo(this.sectionList[index + 1].path);
+    } else if (direction === 'up' && index > 0) {
+      this.navigateTo(this.sectionList[index - 1].path);
+    }
+  }
+
+  navigateTo(path: string) {
+    if ('startViewTransition' in document) {
+      (document as any).startViewTransition(() => this.router.navigate([path]));
     } else {
-      this.showFooter.set(true);
+      this.router.navigate([path]);
     }
-  }
-
-  private scrollUp() {
-    this.direction.set('up');
-    if (this.showFooter()) {
-      if (this.footerScroll()) {
-        this.footerScroll.set(false);
-        this.showFooter.set(false);
-        return;
-      }
-      this.footerScroll.set(true);
-    } else if (this.currentSection() > 0) {
-      this.currentSection.update((i) => i - 1);
-    }
-  }
-
-  goTo(index: number) {
-    const current = this.currentSection();
-    this.direction.set(index > current ? 'down' : 'up');
-    this.currentSection.set(index);
-    this.showFooter.set(false);
-    this.footerScroll.set(false);
   }
 }
