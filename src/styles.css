@@ -15,12 +15,18 @@
     font-family: 'Inter', sans-serif;
   }
 }
-::view-transition-old(pages-down),
-::view-transition-new(pages-down),
-::view-transition-old(pages-up),
-::view-transition-new(pages-up) {
+
+::view-transition-group(fixed) {
+  z-index: 100;
+}
+::view-transition-group(pages-down),
+::view-transition-group(pages-up) {
   animation-duration: 600ms;
   animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  mix-blend-mode: normal;
+  isolation: isolate;
+  animation-fill-mode: both;
+  z-index: 1;
 }
 
 ::view-transition-old(pages-down) {

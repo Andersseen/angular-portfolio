@@ -1,22 +1,16 @@
 import { NgClass } from '@angular/common';
 import { Component, DestroyRef, effect, inject, signal } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import Navbar from './navbar';
 
 @Component({
   selector: 'app-pages',
-
-  imports: [NgClass, RouterModule],
+  imports: [NgClass, RouterModule, Navbar],
   template: `
     <main class="relative h-screen w-screen overflow-hidden bg-white text-black" [ngClass]="'pages-' + direction()">
       <router-outlet />
-      <div class="fixed right-6 bottom-6 z-50 flex flex-col gap-2">
-        @for (section of sectionList; track $index) {
-          <button class="rounded bg-black px-4 py-2 text-white" (click)="navigateTo(section.path)">
-            Ir a {{ section.label }}
-          </button>
-        }
-      </div>
     </main>
+    <app-navbar (navigateTo)="navigateTo($event)" />
   `,
   styles: [
     `
@@ -29,7 +23,7 @@ import { Router, RouterModule } from '@angular/router';
     `,
   ],
 })
-export class PagesComponent {
+export default class Pages {
   private router = inject(Router);
   private destroyRef = inject(DestroyRef);
 
