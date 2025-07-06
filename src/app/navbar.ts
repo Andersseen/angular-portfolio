@@ -1,14 +1,20 @@
-import { Component, output } from '@angular/core';
+import { NgClass } from '@angular/common';
+import { Component, inject, OnInit, output, signal } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
-  imports: [],
+  imports: [NgClass],
   template: `
     <nav class="dock fixed bottom-6 left-1/2 z-50 flex -translate-x-1/2 gap-3">
       @for (section of sectionList; track $index) {
         <button
-          class="dock-icon aspect-square w-10 rounded-full bg-neutral-900 transition-all duration-500 ease-in-out hover:scale-[1.5] md:w-12"
+          class="dock-icon aspect-square w-10 rounded-full transition-all duration-500 ease-in-out hover:scale-[1.5] md:w-12"
           (click)="navigateTo.emit(section.path)"
+          [ngClass]="{
+            'bg-neutral-900 dark:bg-neutral-700': isCurrentSection(section.path),
+            'bg-neutral-700 dark:bg-neutral-900': !isCurrentSection(section.path),
+          }"
         >
           {{ section.label[0] }}
         </button>
@@ -45,7 +51,10 @@ import { Component, output } from '@angular/core';
     `,
   ],
 })
-export default class Navbar {
+export default class Navbar implements OnInit {
+  public router = inject(Router);
+  public currentRoute = signal(this.clearPath(this.router.url));
+
   public navigateTo = output<string>();
   public sectionList = [
     { path: 'hero', label: 'Hero' },
@@ -53,4 +62,17 @@ export default class Navbar {
     { path: 'projects', label: 'Projects' },
     { path: 'contact', label: 'Contact' },
   ];
+  ngOnInit() {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.currentRoute.set(this.clearPath(event.urlAfterRedirects));
+      }
+    });
+  }
+  private clearPath(path: string) {
+    return path.split('/').pop() || '';
+  }
+  public isCurrentSection(section: string) {
+    return this.currentRoute() === section;
+  }
 }
