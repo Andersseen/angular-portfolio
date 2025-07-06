@@ -79,6 +79,7 @@ export default class Pages {
 
   private get currentIndex(): number {
     const url = this.router.url.replace('/', '');
+
     return this.sectionList.findIndex((s) => s.path === url);
   }
 
