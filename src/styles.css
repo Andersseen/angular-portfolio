@@ -27,6 +27,7 @@
 ::view-transition-group(navbar) {
   z-index: 100;
 }
+
 ::view-transition-group(pages-down),
 ::view-transition-group(pages-up) {
   animation-duration: 600ms;
