@@ -15,6 +15,7 @@
     font-family: 'Inter', sans-serif;
   }
 }
+::view-transition-group(preloader),
 ::view-transition-group(language-switcher),
 ::view-transition-group(theme-switcher),
 ::view-transition-group(navbar) {

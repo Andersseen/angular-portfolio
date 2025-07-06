@@ -5,7 +5,7 @@ import { Injectable, signal } from '@angular/core';
   providedIn: 'root',
 })
 export class LanguageService {
-  private currentLanguage = signal<Language>('en');
+  #currentLanguage = signal<Language>('en');
 
   readonly languages: LanguageOption[] = [
     { code: 'en', name: 'English', flag: '🇺🇸' },
@@ -13,7 +13,7 @@ export class LanguageService {
     { code: 'ua', name: 'Українська', flag: '🇺🇦' },
   ];
 
-  readonly language = this.currentLanguage.asReadonly();
+  readonly language = this.#currentLanguage.asReadonly();
 
   constructor() {
     // Load language from localStorage or browser preference
@@ -25,9 +25,9 @@ export class LanguageService {
     const browserLanguage = navigator.language.split('-')[0] as Language;
 
     if (savedLanguage && this.isValidLanguage(savedLanguage)) {
-      this.currentLanguage.set(savedLanguage);
+      this.#currentLanguage.set(savedLanguage);
     } else if (this.isValidLanguage(browserLanguage)) {
-      this.currentLanguage.set(browserLanguage);
+      this.#currentLanguage.set(browserLanguage);
     }
   }
 
@@ -36,7 +36,7 @@ export class LanguageService {
   }
 
   setLanguage(lang: Language) {
-    this.currentLanguage.set(lang);
+    this.#currentLanguage.set(lang);
     localStorage.setItem('language', lang);
   }
 
@@ -45,6 +45,6 @@ export class LanguageService {
   }
 
   getCurrentLanguageInfo() {
-    return this.languages.find((lang) => lang.code === this.currentLanguage()) || this.languages[0];
+    return this.languages.find((lang) => lang.code === this.#currentLanguage()) || this.languages[0];
   }
 }
