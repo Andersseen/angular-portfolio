@@ -3,7 +3,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
-  --color-primary: #2563eb;
+  --color-background: var(--color-neutral-100);
+  --color-foreground: var(--color-neutral-900);
 }
 
 @layer base {
@@ -13,6 +14,11 @@
 
   body {
     font-family: 'Inter', sans-serif;
+  }
+
+  .dark {
+    --color-background: var(--color-neutral-900);
+    --color-foreground: var(--color-neutral-100);
   }
 }
 ::view-transition-group(preloader),

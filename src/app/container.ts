@@ -6,7 +6,7 @@ import PreloaderComponent from '../components/preloader';
   selector: 'app-root',
   imports: [RouterOutlet, PreloaderComponent],
   template: `
-    <app-preloader />
+    <app-preloader [delay]="500" />
     <router-outlet />
   `,
 })

@@ -1,6 +1,6 @@
 import BaseComponent from '@/shared/base.component';
 import { NgClass } from '@angular/common';
-import { Component, effect, Input, signal } from '@angular/core';
+import { Component, effect, input, signal } from '@angular/core';
 
 @Component({
   selector: 'app-preloader',
@@ -26,7 +26,7 @@ import { Component, effect, Input, signal } from '@angular/core';
   ],
 })
 export default class PreloaderComponent extends BaseComponent {
-  @Input() delay = 1500;
+  public delay = input(1500);
 
   public visible = signal(true);
   public show = signal(true);
@@ -34,8 +34,8 @@ export default class PreloaderComponent extends BaseComponent {
   constructor() {
     super();
     effect(() => {
-      setTimeout(() => this.show.set(false), this.delay);
-      setTimeout(() => this.visible.set(false), this.delay + 1000);
+      setTimeout(() => this.show.set(false), this.delay());
+      setTimeout(() => this.visible.set(false), this.delay() + 1000);
     });
   }
 }

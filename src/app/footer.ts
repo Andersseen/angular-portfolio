@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   selector: 'app-footer',
   imports: [],
   template: `
-    <footer class="bg-neutral-900 py-16 text-neutral-100 dark:bg-neutral-800 dark:text-neutral-200">
+    <footer class="py-16">
       <div class="container mx-auto px-6">
         <div class="mx-auto max-w-6xl">
           <div class="mb-12 grid gap-8 md:grid-cols-4">
