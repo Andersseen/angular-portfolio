@@ -5,9 +5,7 @@ import { RouterOutlet } from '@angular/router';
   selector: 'app-root',
   imports: [RouterOutlet],
   template: `
-    <div>
-      <router-outlet />
-    </div>
+    <router-outlet />
   `,
 })
 export default class Container {}
