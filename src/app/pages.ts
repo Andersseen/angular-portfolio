@@ -1,15 +1,25 @@
 import { NgClass } from '@angular/common';
 import { Component, HostListener, inject, signal } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import Footer from './footer';
 import Navbar from './navbar';
 
 @Component({
   selector: 'app-pages',
-  imports: [NgClass, RouterModule, Navbar],
+  imports: [NgClass, RouterModule, Navbar, Footer],
   template: `
     <main class="relative h-screen w-screen" [ngClass]="'pages-' + direction()">
       <router-outlet />
+      @if (showFooter()) {
+        <footer
+          class="bg-background absolute bottom-0 left-0 w-full"
+          [ngClass]="animatingOut() ? 'footer-leave' : 'footer-enter'"
+        >
+          <app-footer />
+        </footer>
+      }
     </main>
+
     <app-navbar (navigateTo)="navigateTo($event)" />
   `,
   styles: [
@@ -20,6 +30,33 @@ import Navbar from './navbar';
       main.pages-up {
         view-transition-name: pages-up;
       }
+      .footer-enter {
+        animation: footerIn 0.4s ease-out forwards;
+        opacity: 0;
+        transform: translateY(100%);
+      }
+
+      .footer-leave {
+        animation: footerOut 0.4s ease-in forwards;
+      }
+
+      @keyframes footerIn {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes footerOut {
+        from {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        to {
+          opacity: 0;
+          transform: translateY(100%);
+        }
+      }
     `,
   ],
 })
@@ -29,6 +66,8 @@ export default class Pages {
   public direction = signal<'up' | 'down'>('down');
   private scrollTimeout: any = null;
   private lastTouchY: number | null = null;
+  public showFooter = signal(false);
+  public animatingOut = signal(false);
 
   public sectionList = [
     { path: 'hero', label: 'Hero' },
@@ -70,9 +109,22 @@ export default class Pages {
     const index = this.currentIndex;
     this.direction.set(dir);
 
-    if (dir === 'down' && index < this.sectionList.length - 1) {
-      this.navigateTo(this.sectionList[index + 1].path);
-    } else if (dir === 'up' && index > 0) {
+    if (dir === 'down') {
+      if (index < this.sectionList.length - 1) {
+        this.navigateTo(this.sectionList[index + 1].path);
+      } else {
+        this.showFooter.set(true);
+      }
+    }
+    if (dir === 'up' && index > 0) {
+      if (this.showFooter()) {
+        this.animatingOut.set(true);
+        setTimeout(() => {
+          this.showFooter.set(false);
+          this.animatingOut.set(false);
+        }, 400);
+        return;
+      }
       this.navigateTo(this.sectionList[index - 1].path);
     }
   }

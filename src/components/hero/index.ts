@@ -41,15 +41,11 @@ import { Component } from '@angular/core';
             {{ getContent()?.hero.greeting }}
           </h1>
 
-          <h2
-            class="animate-slide-up animate-delay-200 mb-6 text-2xl font-semibold text-neutral-600 md:text-3xl dark:text-neutral-300"
-          >
+          <h2 class="animate-slide-up animate-delay-200 mb-6 text-2xl font-semibold md:text-3xl">
             {{ getContent()?.hero.title }}
           </h2>
 
-          <p
-            class="animate-slide-up animate-delay-300 mx-auto mb-12 max-w-3xl text-lg leading-relaxed text-neutral-600 md:text-xl dark:text-neutral-400"
-          >
+          <p class="animate-slide-up animate-delay-300 0 mx-auto mb-12 max-w-3xl text-lg leading-relaxed md:text-xl">
             {{ getContent()?.hero.description }}
           </p>
 

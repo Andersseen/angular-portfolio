@@ -3,9 +3,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
-  imports: [],
   template: `
-    <footer class="bg-neutral-900 py-16 text-white dark:bg-neutral-950">
+    <section class="FOOTER py-16">
       <div class="container mx-auto px-6">
         <div class="mx-auto max-w-6xl">
           <div class="mb-12 grid gap-8 md:grid-cols-4">
@@ -109,7 +108,7 @@ import { Component } from '@angular/core';
           </div>
         </div>
       </div>
-    </footer>
+    </section>
   `,
 })
 export default class Footer extends BaseComponent {

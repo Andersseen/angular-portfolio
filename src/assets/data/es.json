@@ -1,0 +1,84 @@
+{
+  "preload": {
+    "title": "Hola",
+    "description": "Por favor, espera mientras se carga el contenido..."
+  },
+  "hero": {
+    "greeting": "Hola, soy Andrii",
+    "title": "Desarrollador Full-Stack",
+    "description": "Creo experiencias digitales excepcionales con tecnologías modernas, enfocándome en código limpio, arquitectura escalable y diseño centrado en el usuario.",
+    "viewWork": "Ver Mi Trabajo",
+    "contact": "Contactar"
+  },
+  "about": {
+    "title": "Sobre Mí",
+    "subtitle": "Desarrollador Apasionado y Solucionador de Problemas",
+    "paragraphs": [
+      "Con más de 5 años de experiencia en desarrollo full-stack, me especializo en crear aplicaciones web robustas y escalables que ofrecen experiencias de usuario excepcionales. Mi experiencia abarca frameworks modernos de JavaScript, tecnologías en la nube y prácticas de desarrollo ágil.",
+      "Creo en escribir código limpio y mantenible siguiendo las mejores prácticas de la industria. Mi enfoque combina excelencia técnica con resolución creativa de problemas, asegurando que cada proyecto no solo cumpla los requisitos sino que supere las expectativas.",
+      "Cuando no estoy programando, contribuyo a proyectos de código abierto, mentorizo desarrolladores junior y me mantengo actualizado con tecnologías emergentes. Me apasiona el aprendizaje continuo y compartir conocimiento con la comunidad de desarrolladores."
+    ],
+    "stats": [
+      { "number": "50+", "label": "Proyectos Completados" },
+      { "number": "5+", "label": "Años de Experiencia" },
+      { "number": "20+", "label": "Tecnologías" },
+      { "number": "100%", "label": "Satisfacción del Cliente" }
+    ]
+  },
+  "skills": {
+    "title": "Habilidades y Experiencia",
+    "subtitle": "Tecnologías con las que trabajo",
+    "categories": {
+      "frontend": "Desarrollo Frontend",
+      "backend": "Desarrollo Backend",
+      "tools": "Herramientas y Plataformas",
+      "other": "Otras Habilidades"
+    }
+  },
+  "projects": {
+    "title": "Proyectos Destacados",
+    "subtitle": "Algunos de mis trabajos recientes",
+    "demo": "Demo en Vivo",
+    "code": "Código Fuente",
+    "viewAll": "Ver Todos los Proyectos"
+  },
+  "contact": {
+    "title": "Trabajemos Juntos",
+    "subtitle": "¿Listo para comenzar tu próximo proyecto?",
+    "description": "Siempre estoy interesado en nuevas oportunidades y colaboraciones. Ya sea que tengas un proyecto en mente o simplemente quieras conectar, me encantaría saber de ti.",
+    "form": {
+      "name": "Nombre Completo",
+      "email": "Correo Electrónico",
+      "subject": "Asunto",
+      "message": "Tu Mensaje",
+      "send": "Enviar Mensaje",
+      "sending": "Enviando...",
+      "success": "¡Mensaje enviado exitosamente!",
+      "error": "Error al enviar el mensaje. Por favor intenta de nuevo."
+    },
+    "info": {
+      "email": "hola@Andriidev.com",
+      "phone": "+1 (555) 123-4567",
+      "location": "San Francisco, CA"
+    }
+  },
+  "footer": {
+    "tagline": "Creando experiencias digitales que importan",
+    "madeWith": "Construido con",
+    "using": "usando",
+    "rights": "Todos los derechos reservados.",
+    "links": {
+      "home": "Inicio",
+      "about": "Acerca",
+      "projects": "Proyectos",
+      "contact": "Contacto"
+    }
+  },
+  "navigation": {
+    "home": "Inicio",
+    "about": "Acerca",
+    "skills": "Habilidades",
+    "projects": "Proyectos",
+    "contact": "Contacto"
+  }
+}

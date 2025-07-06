@@ -13,17 +13,14 @@ import { Component } from '@angular/core';
             <h2 class="gradient-text mb-4 text-4xl font-bold md:text-5xl">
               {{ getContent()?.about.title }}
             </h2>
-            <p class="text-xl text-neutral-600 dark:text-neutral-400">
+            <p class="text-xl">
               {{ getContent()?.about.subtitle }}
             </p>
           </div>
 
           <div class="grid items-center gap-16 lg:grid-cols-2">
             <div class="space-y-6">
-              <p
-                *ngFor="let paragraph of getContent()?.about.paragraphs"
-                class="text-lg leading-relaxed text-neutral-600 dark:text-neutral-400"
-              >
+              <p *ngFor="let paragraph of getContent()?.about.paragraphs" class="text-lg leading-relaxed">
                 {{ paragraph }}
               </p>
 
@@ -36,7 +33,7 @@ import { Component } from '@angular/core';
                   <div class="gradient-text mb-2 text-3xl font-bold">
                     {{ stat.number }}
                   </div>
-                  <div class="text-sm font-medium text-neutral-600 dark:text-neutral-400">
+                  <div class="text-sm font-medium">
                     {{ stat.label }}
                   </div>
                 </div>
@@ -48,9 +45,7 @@ import { Component } from '@angular/core';
                 <div
                   class="mx-auto aspect-square w-full max-w-md rounded-2xl bg-gradient-to-br from-blue-400 to-purple-500 p-1 shadow-2xl"
                 >
-                  <div
-                    class="flex h-full w-full items-center justify-center overflow-hidden rounded-2xl bg-white dark:bg-neutral-800"
-                  >
+                  <div class="flex h-full w-full items-center justify-center overflow-hidden rounded-2xl">
                     <img
                       src="linkedin_photo.jpg"
                       [alt]="portfolioService.personalInfo?.name"

@@ -1,25 +1,27 @@
-import content from '@/assets/data/content.json';
-import { ContentData, Language } from '@/shared/portfolio.types';
-import { Injectable, signal } from '@angular/core';
+import en from '@/assets/data/en.json';
+import es from '@/assets/data/es.json';
+import ua from '@/assets/data/ua.json';
+import { ContentData } from '@/shared/portfolio.types';
+import { effect, inject, Injectable, signal } from '@angular/core';
+import { LanguageService } from './language.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ContentService {
-  private contentData = signal<Record<Language, ContentData> | null>(null);
+  #language = inject(LanguageService).language;
+  private contentData = signal<ContentData>(en);
+  readonly getContent = this.contentData.asReadonly();
 
-  readonly content = this.contentData.asReadonly();
+  #getLanguage = {
+    en: () => this.contentData.set(en),
+    es: () => this.contentData.set(es),
+    ua: () => this.contentData.set(ua),
+  };
 
   constructor() {
-    this.loadContent();
-  }
-
-  private async loadContent() {
-    this.contentData.set(content);
-  }
-
-  getContent(language: Language): ContentData | null {
-    const content = this.contentData();
-    return content ? content[language] : null;
+    effect(() => {
+      this.#getLanguage[this.#language()]();
+    });
   }
 }
