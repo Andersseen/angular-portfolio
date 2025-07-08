@@ -15,57 +15,57 @@ import FlickeringGrid from '../flickering-grid';
         [color]="'#a3a3a3'"
         [maxOpacity]="0.5"
         [flickerChance]="0.1"
-      />
-
-      <!-- Masked content with reveal effect -->
-      <div
-        [ngStyle]="{
-          'mask-image': 'url(mask.svg)',
-          '-webkit-mask-image': 'url(mask.svg)',
-          'mask-size': maskSize(),
-          '-webkit-mask-size': maskSize(),
-          'mask-position': maskPosition(),
-          '-webkit-mask-position': maskPosition(),
-          'mask-repeat': 'no-repeat',
-          '-webkit-mask-repeat': 'no-repeat',
-        }"
-        class="bg-background absolute inset-0 z-10 flex h-full w-full items-center justify-center"
       >
-        <!-- Overlay to darken background slightly -->
-        <div class="absolute inset-0 z-0 bg-neutral-900 opacity-50"></div>
+        <!-- Masked content with reveal effect -->
+        <div
+          [ngStyle]="{
+            'mask-image': 'url(mask.svg)',
+            '-webkit-mask-image': 'url(mask.svg)',
+            'mask-size': maskSize(),
+            '-webkit-mask-size': maskSize(),
+            'mask-position': maskPosition(),
+            '-webkit-mask-position': maskPosition(),
+            'mask-repeat': 'no-repeat',
+            '-webkit-mask-repeat': 'no-repeat',
+          }"
+          class="bg-background absolute inset-0 z-10 flex h-full w-full items-center justify-center"
+        >
+          <!-- Overlay to darken background slightly -->
+          <div class="absolute inset-0 z-0 bg-neutral-900 opacity-50"></div>
 
-        <!-- Hidden Content -->
-        <div class="relative z-10 max-w-4xl px-6 text-center text-white">
+          <!-- Hidden Content -->
+          <div class="relative z-10 max-w-4xl px-6 text-center text-white">
+            <p class="max-w-3xl px-4 text-center text-3xl font-bold md:text-5xl">
+              ...but I'm busy working out bugs and creating cool stuff.
+            </p>
+
+            <p class="text-[--main-color]">
+              @for (char of animatedText; track $index) {
+                <span
+                  [ngStyle]="{
+                    'text-shadow':
+                      hoveredChar === $index ? '-2px 2px rgba(245,245,245,0.7)' : '1px -1px rgba(248,248,248,0.5)',
+                    transform: hoveredChar === $index ? 'scale(1.1)' : 'scale(1)',
+                    display: char === ' ' ? 'inline-block' : 'inline',
+                    transition: 'all 0.3s ease-in-out',
+                  }"
+                  (mouseenter)="hoveredChar = $index"
+                  (mouseleave)="hoveredChar = null"
+                >
+                  {{ char }}
+                </span>
+              }
+            </p>
+          </div>
+        </div>
+
+        <!-- Revealed content -->
+        <div class="absolute inset-0 flex items-center justify-center">
           <p class="max-w-3xl px-4 text-center text-3xl font-bold md:text-5xl">
-            ...but I'm busy working out bugs and creating cool stuff.
-          </p>
-
-          <p class="text-[--main-color]">
-            @for (char of animatedText; track $index) {
-              <span
-                [ngStyle]="{
-                  'text-shadow':
-                    hoveredChar === $index ? '-2px 2px rgba(245,245,245,0.7)' : '1px -1px rgba(248,248,248,0.5)',
-                  transform: hoveredChar === $index ? 'scale(1.1)' : 'scale(1)',
-                  display: char === ' ' ? 'inline-block' : 'inline',
-                  transition: 'all 0.3s ease-in-out',
-                }"
-                (mouseenter)="hoveredChar = $index"
-                (mouseleave)="hoveredChar = null"
-              >
-                {{ char }}
-              </span>
-            }
+            Here should be an in-depth text about my passion for coding...
           </p>
         </div>
-      </div>
-
-      <!-- Revealed content -->
-      <div class="absolute inset-0 flex items-center justify-center">
-        <p class="max-w-3xl px-4 text-center text-3xl font-bold md:text-5xl">
-          Here should be an in-depth text about my passion for coding...
-        </p>
-      </div>
+      </app-flickering-grid>
     </div>
   `,
 })

@@ -21,7 +21,7 @@ import {
         <canvas #gridCanvas class="pointer-events-none absolute inset-0 h-full w-full"></canvas>
       </div>
       <div class="relative z-10 h-full w-full">
-        <ng-content></ng-content>
+        <ng-content />
       </div>
     </div>
   `,
