@@ -1,11 +1,11 @@
-import { LanguageSwitcherComponent } from '@/components/language-switcher/language-switcher.component';
-import { ThemeSwitcherComponent } from '@/components/theme-switcher/theme-switcher.component';
+import LanguageSwitcher from '@/components/language-switcher/language-switcher.component';
+import ThemeSwitcher from '@/components/theme-switcher';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-layout',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ThemeSwitcherComponent, LanguageSwitcherComponent],
+  imports: [ThemeSwitcher, LanguageSwitcher],
   template: `
     <section class="bg-background text-foreground overflow-hidden transition-colors duration-300">
       <app-theme-switcher />

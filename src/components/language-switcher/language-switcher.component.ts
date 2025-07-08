@@ -65,7 +65,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
     `,
   ],
 })
-export class LanguageSwitcherComponent {
+export default class LanguageSwitcher {
   public languageService = inject(LanguageService);
   public isOpen = false;
 

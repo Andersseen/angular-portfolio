@@ -59,6 +59,6 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
     `,
   ],
 })
-export class ThemeSwitcherComponent {
+export default class ThemeSwitcher {
   themeService = inject(ThemeService);
 }
