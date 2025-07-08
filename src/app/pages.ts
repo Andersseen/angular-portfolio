@@ -1,11 +1,12 @@
 import { NgClass } from '@angular/common';
-import { Component, HostListener, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, inject, signal } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import Footer from './footer';
 import Navbar from './navbar';
 
 @Component({
   selector: 'app-pages',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgClass, RouterModule, Navbar, Footer],
   template: `
     <main class="relative h-screen w-screen" [ngClass]="'pages-' + direction()">

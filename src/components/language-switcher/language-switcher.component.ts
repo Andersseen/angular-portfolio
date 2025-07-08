@@ -1,9 +1,10 @@
 import { LanguageService } from '@/services/language.service';
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 @Component({
   selector: 'app-language-switcher',
   imports: [],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <section class="transition-fixed top-5 right-5 z-50">
       <button

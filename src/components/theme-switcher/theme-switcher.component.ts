@@ -1,10 +1,10 @@
 import { ThemeService } from '@/services/theme.service';
-import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 @Component({
   selector: 'app-theme-switcher',
-  imports: [CommonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [],
   template: `
     <button
       (click)="themeService.toggleTheme()"

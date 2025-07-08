@@ -1,9 +1,10 @@
 import BaseComponent from '@/shared/base.component';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-hero',
   imports: [],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <section
       id="home"
