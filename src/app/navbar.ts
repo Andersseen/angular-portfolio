@@ -1,9 +1,10 @@
 import { NgClass } from '@angular/common';
-import { Component, inject, OnInit, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, output, signal } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgClass],
   template: `
     <nav class="dock fixed bottom-6 left-1/2 z-50 flex -translate-x-1/2 gap-3">

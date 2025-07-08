@@ -9,7 +9,7 @@ const routes: Routes = [
       { path: '', redirectTo: '/hero', pathMatch: 'full' },
       {
         path: 'hero',
-        loadComponent: () => import('@/components/hero'),
+        loadComponent: () => import('@/components/bloom'),
       },
       {
         path: 'about',
@@ -21,7 +21,7 @@ const routes: Routes = [
       },
       {
         path: 'contact',
-        loadComponent: () => import('@/components/contact'),
+        loadComponent: () => import('@/components/form/contact-section'),
       },
     ],
   },

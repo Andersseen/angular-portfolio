@@ -1,9 +1,10 @@
 import BaseComponent from '@/shared/base.component';
 import { NgClass } from '@angular/common';
-import { Component, effect, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, input, signal } from '@angular/core';
 
 @Component({
   selector: 'app-preloader',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgClass],
   template: `
     @if (visible()) {

@@ -1,8 +1,9 @@
 import BaseComponent from '@/shared/base.component';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <section class="FOOTER py-16">
       <div class="container mx-auto px-6">

@@ -5,7 +5,7 @@ import { Component, computed, input, signal } from '@angular/core';
   imports: [],
   template: `
     <div
-      class="noselect absolute top-[50%] z-10 flex h-fit w-full flex-col items-center justify-center rounded-[50%] text-violet-900"
+      class="noselect absolute top-[50%] z-10 flex h-fit w-full flex-col items-center justify-center rounded-[50%] text-fuchsia-950"
     >
       <h1
         class="animate-fade-in -ml-16 flex flex-col items-center justify-center text-center text-6xl lg:text-9xl"
@@ -26,7 +26,7 @@ import { Component, computed, input, signal } from '@angular/core';
     </div>
   `,
 })
-export class HeroTitleComponent {
+export default class HeroTitle {
   public title = input('');
 
   public perspective = signal(400);
