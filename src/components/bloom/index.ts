@@ -3,13 +3,13 @@ import { extend, NgtCanvas } from 'angular-three';
 import { NgtsLoader } from 'angular-three-soba/loaders';
 import * as THREE from 'three';
 import { SceneGraph } from './experience';
-import { HeroTitleComponent } from './hero-title';
+import HeroTitle from './hero-title';
 
 extend(THREE);
 
 @Component({
   selector: 'app-bloom',
-  imports: [NgtCanvas, NgtsLoader, HeroTitleComponent],
+  imports: [NgtCanvas, NgtsLoader, HeroTitle],
   template: `
     <section class="h-screen w-full bg-neutral-100 dark:bg-neutral-900">
       <and-hero-title title="Web developer" />
@@ -18,6 +18,6 @@ extend(THREE);
     </section>
   `,
 })
-export default class BloomComponent {
+export default class Bloom {
   public sceneGraph = SceneGraph;
 }
