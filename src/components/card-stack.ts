@@ -1,68 +1,60 @@
-import { CommonModule } from '@angular/common';
-import { Component, ElementRef, ViewChild, signal } from '@angular/core';
+import { NgStyle } from '@angular/common';
+import { Component, ElementRef, signal, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-card-stack',
-  standalone: true,
-  imports: [CommonModule],
+  imports: [NgStyle],
   template: `
-    <div #stackRef class="relative mx-auto my-10" [ngStyle]="{ perspective: '600px', width: '208px', height: '208px' }">
+    <div #stackRef class="relative" [ngStyle]="{ perspective: '600px', width: '400px', height: '400px' }">
       @for (card of cards(); track card.id) {
         <div
-          class="absolute touch-none overflow-hidden rounded-2xl border-4 border-white bg-cover bg-center"
+          class="border-foreground absolute cursor-grab touch-none overflow-hidden rounded-2xl border-4 bg-cover bg-center transition-transform duration-300 ease-out"
           [ngStyle]="{
-            width: '208px',
-            height: '208px',
+            width: '400px',
+            height: '400px',
             backgroundImage: 'url(' + card.img + ')',
             zIndex: getZIndex(card.id),
             transform: getCardTransform(card.id),
           }"
           (mousedown)="startDrag($event, card.id)"
-          (click)="onCardClick(card.id)"
+          (mouseup)="endDrag()"
+          (mouseleave)="endDrag()"
         ></div>
       }
     </div>
   `,
-  styles: [
-    `
-      .touch-none {
-        touch-action: none;
-        user-select: none;
-      }
-    `,
-  ],
 })
-export default class CardStackComponent {
-  cards = signal(this.defaultCards());
-
-  draggingId = signal(0);
-  dragX = signal(0);
-  dragY = signal(0);
+export class CardStackComponent {
+  public cards = signal(this.defaultCards());
+  public draggingId = signal(0);
+  public dragX = signal(0);
+  public dragY = signal(0);
 
   @ViewChild('stackRef') stackRef!: ElementRef<HTMLElement>;
 
   startDrag(event: MouseEvent, id: number) {
     event.preventDefault();
     this.draggingId.set(id);
+    const initialX = event.clientX;
+    const initialY = event.clientY;
     const move = (e: MouseEvent) => {
-      this.dragX.set(e.clientX - event.clientX);
-      this.dragY.set(e.clientY - event.clientY);
+      this.dragX.set(e.clientX - initialX);
+      this.dragY.set(e.clientY - initialY);
     };
-    const up = () => {
-      window.removeEventListener('mousemove', move);
-      window.removeEventListener('mouseup', up);
-
-      if (Math.abs(this.dragX()) > 150 || Math.abs(this.dragY()) > 150) {
-        this.sendToBack(id);
-      }
-
-      this.draggingId.set(0);
-      this.dragX.set(0);
-      this.dragY.set(0);
-    };
-
     window.addEventListener('mousemove', move);
-    window.addEventListener('mouseup', up);
+    window.addEventListener('mouseup', () => this.endDrag(move), { once: true });
+  }
+
+  endDrag(moveHandler?: (e: MouseEvent) => void) {
+    if (moveHandler) window.removeEventListener('mousemove', moveHandler);
+
+    if (Math.abs(this.dragX()) > 150 || Math.abs(this.dragY()) > 150) {
+      if (this.draggingId()) this.sendToBack(this.draggingId()!);
+    }
+
+    this.draggingId.set(0);
+    this.dragX.set(0);
+    this.dragY.set(0);
   }
 
   getCardTransform(id: number) {
@@ -70,9 +62,8 @@ export default class CardStackComponent {
     const total = this.cards().length;
     const baseRotate = (total - index - 1) * 4;
     const scale = 1 + index * 0.06 - total * 0.06;
-
     if (this.draggingId() === id) {
-      return `translate(${this.dragX()}px, ${this.dragY()}px) rotateX(${this.dragY() / 2}deg) rotateY(${this.dragX() / 2}deg) scale(${scale})`;
+      return `translate(${this.dragX()}px, ${this.dragY()}px) rotateX(${this.dragY() / 4}deg) rotateY(${this.dragX() / 4}deg) scale(${scale})`;
     } else {
       return `rotateZ(${baseRotate}deg) scale(${scale})`;
     }
@@ -80,10 +71,6 @@ export default class CardStackComponent {
 
   getZIndex(id: number) {
     return this.cards().findIndex((c) => c.id === id) + 1;
-  }
-
-  onCardClick(id: number) {
-    this.sendToBack(id);
   }
 
   sendToBack(id: number) {
@@ -96,10 +83,10 @@ export default class CardStackComponent {
 
   defaultCards() {
     return [
-      { id: 1, img: 'https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?q=80&w=500&auto=format' },
-      { id: 2, img: 'https://images.unsplash.com/photo-1449844908441-8829872d2607?q=80&w=500&auto=format' },
-      { id: 3, img: 'https://images.unsplash.com/photo-1452626212852-811d58933cae?q=80&w=500&auto=format' },
-      { id: 4, img: 'https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=500&auto=format' },
+      { id: 1, img: '/falcotech.webp' },
+      { id: 2, img: '/epm.webp' },
+      { id: 3, img: '/soul.webp' },
+      { id: 4, img: '/biker.webp' },
     ];
   }
 }

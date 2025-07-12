@@ -17,7 +17,7 @@ const routes: Routes = [
       },
       {
         path: 'projects',
-        loadComponent: () => import('@/components/card-stack'),
+        loadComponent: () => import('@/components/projects'),
       },
       {
         path: 'contact',
