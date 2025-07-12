@@ -21,7 +21,7 @@ const routes: Routes = [
       },
       {
         path: 'contact',
-        loadComponent: () => import('@/components/form/contact-section'),
+        loadComponent: () => import('@/components/stars'),
       },
     ],
   },
