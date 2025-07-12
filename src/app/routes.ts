@@ -17,7 +17,7 @@ const routes: Routes = [
       },
       {
         path: 'projects',
-        loadComponent: () => import('@/components/carousel/carousel.component'),
+        loadComponent: () => import('@/components/card-stack'),
       },
       {
         path: 'contact',
