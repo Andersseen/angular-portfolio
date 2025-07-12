@@ -1,24 +1,15 @@
-import { CommonModule } from '@angular/common';
-import {
-  AfterViewInit,
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  Input,
-  OnDestroy,
-  ViewChild,
-} from '@angular/core';
-import createGlobe, { COBEOptions } from 'cobe';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, OnDestroy, viewChild } from '@angular/core';
+import createGlobe from 'cobe';
 
 @Component({
   selector: 'app-globe',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule],
+  imports: [],
   template: `
-    <div class="relative h-full w-full">
+    <div class="relative flex h-full w-full items-center justify-center overflow-hidden">
       <canvas
         #canvasRef
-        class="absolute -top-[25%] aspect-square h-full w-full opacity-0 transition-opacity duration-500"
+        class="absolute aspect-square h-fit w-fit opacity-0 transition-opacity duration-500"
         (pointerdown)="onPointerDown($event)"
         (pointerup)="onPointerUp()"
         (pointerout)="onPointerUp()"
@@ -29,9 +20,7 @@ import createGlobe, { COBEOptions } from 'cobe';
   `,
 })
 export default class Globe implements AfterViewInit, OnDestroy {
-  @Input() config?: Partial<COBEOptions>;
-  @ViewChild('canvasRef', { static: true }) canvasRef!: ElementRef<HTMLCanvasElement>;
-
+  public canvasRef = viewChild<ElementRef<HTMLCanvasElement>>('canvasRef');
   private globe: any;
   private phi = 0;
   private width = 0;
@@ -40,7 +29,7 @@ export default class Globe implements AfterViewInit, OnDestroy {
   private r = 0;
 
   ngAfterViewInit(): void {
-    const canvas = this.canvasRef.nativeElement;
+    const canvas = this.canvasRef()!.nativeElement;
     this.width = canvas.offsetWidth;
 
     this.globe = createGlobe(canvas, {
@@ -61,9 +50,9 @@ export default class Globe implements AfterViewInit, OnDestroy {
         if (!this.pointerInteracting) this.phi += 0.005;
         state['phi'] = this.phi + this.r;
         state['width'] = this.width * 2;
+
         state['height'] = this.width * 2;
       },
-      ...this.config,
     });
 
     requestAnimationFrame(() => {
@@ -71,6 +60,8 @@ export default class Globe implements AfterViewInit, OnDestroy {
     });
 
     window.addEventListener('resize', this.handleResize);
+    this.canvasRef()!.nativeElement.width = this.width * 2;
+    this.canvasRef()!.nativeElement.height = this.width * 2;
   }
 
   ngOnDestroy(): void {
@@ -79,18 +70,18 @@ export default class Globe implements AfterViewInit, OnDestroy {
   }
 
   handleResize = () => {
-    const canvas = this.canvasRef.nativeElement;
+    const canvas = this.canvasRef()!.nativeElement;
     this.width = canvas.offsetWidth;
   };
 
   onPointerDown(event: PointerEvent) {
     this.pointerInteracting = event.clientX - this.pointerInteractionMovement;
-    this.canvasRef.nativeElement.style.cursor = 'grabbing';
+    this.canvasRef()!.nativeElement.style.cursor = 'grabbing';
   }
 
   onPointerUp() {
     this.pointerInteracting = null;
-    this.canvasRef.nativeElement.style.cursor = 'grab';
+    this.canvasRef()!.nativeElement.style.cursor = 'grab';
   }
 
   onMouseMove(event: MouseEvent) {
