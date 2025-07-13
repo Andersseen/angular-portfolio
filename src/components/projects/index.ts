@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { CardStackComponent } from '../card-stack';
+import { CardStack } from './card-stack';
 
 @Component({
   selector: 'app-projects',
-  imports: [CardStackComponent],
+  imports: [CardStack],
   template: `
     <section class="grid h-screen w-full grid-cols-1 md:grid-cols-2">
       <!-- Left: Project Title -->
@@ -12,7 +12,7 @@ import { CardStackComponent } from '../card-stack';
       </div>
 
       <!-- Right: Card Stack -->
-      <div class="bg-foreground/20 flex items-center justify-center">
+      <div class="bg-foreground/20 flex flex-col items-center justify-center">
         <app-card-stack />
       </div>
     </section>

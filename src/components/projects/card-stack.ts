@@ -1,9 +1,10 @@
 import { NgStyle } from '@angular/common';
 import { Component, ElementRef, signal, ViewChild } from '@angular/core';
+import { ControlsComponent } from './controls';
 
 @Component({
   selector: 'app-card-stack',
-  imports: [NgStyle],
+  imports: [NgStyle, ControlsComponent],
   template: `
     <div #stackRef class="relative" [ngStyle]="{ perspective: '600px', width: '400px', height: '400px' }">
       @for (card of cards(); track card.id) {
@@ -22,10 +23,11 @@ import { Component, ElementRef, signal, ViewChild } from '@angular/core';
         ></div>
       }
     </div>
+    <app-controls [(cards)]="cards" />
   `,
 })
-export class CardStackComponent {
-  public cards = signal(this.defaultCards());
+export class CardStack {
+  public cards = signal(CARDS);
   public draggingId = signal(0);
   public dragX = signal(0);
   public dragY = signal(0);
@@ -80,13 +82,16 @@ export class CardStackComponent {
     arr.unshift(card);
     this.cards.set(arr);
   }
+}
 
-  defaultCards() {
-    return [
-      { id: 1, img: '/falcotech.webp' },
-      { id: 2, img: '/epm.webp' },
-      { id: 3, img: '/soul.webp' },
-      { id: 4, img: '/biker.webp' },
-    ];
-  }
+export const CARDS = [
+  { id: 1, img: '/falcotech.webp' },
+  { id: 2, img: '/epm.webp' },
+  { id: 3, img: '/soul.webp' },
+  { id: 4, img: '/biker.webp' },
+];
+
+export interface Card {
+  id: number;
+  img: string;
 }
