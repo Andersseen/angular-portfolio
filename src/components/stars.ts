@@ -32,7 +32,7 @@ import { NgtsPointsBuffer } from 'angular-three-soba/performances';
 export class Experience {
   public themeService = inject(ThemeService);
   protected readonly Math = Math;
-  protected readonly sphere = generatePointsInSphere(1000);
+  protected readonly sphere = generatePointsInSphere(333 * 3);
 
   private pointsBufferRef = viewChild.required(NgtsPointsBuffer);
 
@@ -47,7 +47,7 @@ export class Experience {
   }
 }
 function generatePointsInSphere(count: number, radius = 1.5): Float32Array {
-  const points = new Float32Array(count);
+  const points = new Float32Array(count * 3);
 
   for (let i = 0; i < count; i += 3) {
     let x: number, y: number, z: number, lengthSq: number;
