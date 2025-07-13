@@ -13,7 +13,7 @@ import Navbar from './navbar';
       <router-outlet />
       @if (showFooter()) {
         <footer
-          class="bg-background absolute bottom-0 left-0 w-full"
+          class="bg-background absolute bottom-0 left-0 z-20 w-full"
           [ngClass]="animatingOut() ? 'footer-leave' : 'footer-enter'"
         >
           <app-footer />
