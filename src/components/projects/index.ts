@@ -1,9 +1,10 @@
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { Card, CardStack } from './card-stack';
 
 @Component({
   selector: 'app-projects',
   imports: [CardStack],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <section class="grid h-screen w-full grid-cols-1 md:grid-cols-2">
       <!-- Left: Project Title -->

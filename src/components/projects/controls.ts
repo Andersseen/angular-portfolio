@@ -1,8 +1,9 @@
-import { Component, model } from '@angular/core';
+import { ChangeDetectionStrategy, Component, model } from '@angular/core';
 import { Card } from './card-stack';
 
 @Component({
   selector: 'app-controls',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="flex items-center justify-center gap-3 px-0 py-3 md:hidden md:px-8 md:py-5">
       <button
