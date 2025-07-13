@@ -34,8 +34,7 @@
     "three-mesh-bvh": "^0.8.3",
     "three-stdlib": "^2.36.0",
     "troika-three-text": "^0.52.3",
-    "tslib": "^2.8.1",
-    "zone.js": "~0.15.0"
+    "tslib": "^2.8.1"
   },
   "devDependencies": {
     "@angular/build": "^19.0.6",
