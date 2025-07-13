@@ -1,9 +1,11 @@
 import { NgStyle } from '@angular/common';
-import { Component, ElementRef, signal, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, OnInit, output, signal, viewChild } from '@angular/core';
+import { ControlsComponent } from './controls';
 
 @Component({
   selector: 'app-card-stack',
-  imports: [NgStyle],
+  imports: [NgStyle, ControlsComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div #stackRef class="relative" [ngStyle]="{ perspective: '600px', width: '400px', height: '400px' }">
       @for (card of cards(); track card.id) {
@@ -22,16 +24,21 @@ import { Component, ElementRef, signal, ViewChild } from '@angular/core';
         ></div>
       }
     </div>
+    <app-controls [(cards)]="cards" />
   `,
 })
-export class CardStackComponent {
-  public cards = signal(this.defaultCards());
+export class CardStack implements OnInit {
+  public returnTitle = output<Card>();
+
+  public cards = signal(CARDS);
   public draggingId = signal(0);
   public dragX = signal(0);
   public dragY = signal(0);
 
-  @ViewChild('stackRef') stackRef!: ElementRef<HTMLElement>;
-
+  public stackRef = viewChild<ElementRef<HTMLElement>>('stackRef');
+  ngOnInit(): void {
+    this.returnTitle.emit(this.cards()[this.cards().length - 1]);
+  }
   startDrag(event: MouseEvent, id: number) {
     event.preventDefault();
     this.draggingId.set(id);
@@ -79,14 +86,19 @@ export class CardStackComponent {
     const [card] = arr.splice(index, 1);
     arr.unshift(card);
     this.cards.set(arr);
+    this.returnTitle.emit(this.cards()[this.cards().length - 1]);
   }
+}
 
-  defaultCards() {
-    return [
-      { id: 1, img: '/falcotech.webp' },
-      { id: 2, img: '/epm.webp' },
-      { id: 3, img: '/soul.webp' },
-      { id: 4, img: '/biker.webp' },
-    ];
-  }
+export const CARDS: Card[] = [
+  { id: 1, img: '/falcotech.webp', title: 'FalcoTech' },
+  { id: 2, img: '/epm.webp', title: 'Estética Paloma Molero' },
+  { id: 3, img: '/soul.webp', title: 'Soul Alegría' },
+  { id: 4, img: '/biker.webp', title: 'Stylish web' },
+];
+
+export interface Card {
+  id: number;
+  img: string;
+  title: string;
 }

@@ -5,7 +5,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'app-footer',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <section class="FOOTER py-16">
+    <section class="py-16">
       <div class="container mx-auto px-6">
         <div class="mx-auto max-w-6xl">
           <div class="mb-12 grid gap-8 md:grid-cols-4">

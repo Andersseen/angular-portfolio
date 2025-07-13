@@ -1,5 +1,14 @@
 import { NgStyle } from '@angular/common';
-import { AfterViewInit, Component, computed, ElementRef, HostListener, signal, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  computed,
+  ElementRef,
+  HostListener,
+  signal,
+  viewChild,
+  ViewChild,
+} from '@angular/core';
 import FlickeringGrid from '../flickering-grid';
 
 @Component({
@@ -28,7 +37,7 @@ import FlickeringGrid from '../flickering-grid';
             'mask-repeat': 'no-repeat',
             '-webkit-mask-repeat': 'no-repeat',
           }"
-          class="bg-background absolute inset-0 z-10 flex h-full w-full items-center justify-center"
+          class="bg-background absolute inset-0 z-10 flex h-full w-full items-center justify-center transition-[mask-size] duration-300 ease-in-out"
         >
           <!-- Overlay to darken background slightly -->
           <div class="absolute inset-0 z-0 bg-neutral-900 opacity-50"></div>
@@ -61,7 +70,7 @@ import FlickeringGrid from '../flickering-grid';
 
         <!-- Revealed content -->
         <div class="absolute inset-0 flex items-center justify-center">
-          <p class="max-w-3xl px-4 text-center text-3xl font-bold md:text-5xl">
+          <p #box class="max-w-3xl px-4 text-center text-3xl font-bold md:text-5xl">
             Here should be an in-depth text about my passion for coding...
           </p>
         </div>
@@ -71,6 +80,7 @@ import FlickeringGrid from '../flickering-grid';
 })
 export default class About implements AfterViewInit {
   @ViewChild('container') containerRef!: ElementRef<HTMLElement>;
+  public box = viewChild<ElementRef<HTMLElement>>('box');
 
   public isHovered = signal(false);
   public mouseX = signal(0);
@@ -84,7 +94,12 @@ export default class About implements AfterViewInit {
     const rect = this.containerRef.nativeElement.getBoundingClientRect();
     this.mouseX.set(e.clientX - rect.left);
     this.mouseY.set(e.clientY - rect.top);
-    this.isHovered.set(true);
+    this.isHovered.set(this.isInsideBox(e.clientX, e.clientY));
+  }
+
+  private isInsideBox(x: number, y: number): boolean {
+    const boxRect = this.box()!.nativeElement.getBoundingClientRect();
+    return x >= boxRect.left && x <= boxRect.right && y >= boxRect.top && y <= boxRect.bottom;
   }
 
   public maskPosition = computed(() => {
@@ -92,7 +107,7 @@ export default class About implements AfterViewInit {
     return `${this.mouseX() - size / 2}px ${this.mouseY() - size / 2}px`;
   });
 
-  public maskSize = computed(() => (this.isHovered() ? '600px' : '10px'));
+  public maskSize = computed(() => (this.isHovered() ? '600px' : '1px'));
 
   ngAfterViewInit(): void {
     requestAnimationFrame(() => this.onMouseMove(new MouseEvent('mousemove')));
