@@ -1,6 +1,6 @@
 import { NgStyle } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
-import { ControlsComponent } from './controls';
+import ControlsComponent from './controls';
 import State from './state';
 
 @Component({
@@ -28,7 +28,7 @@ import State from './state';
     <app-controls />
   `,
 })
-export class CardStack {
+export default class CardStack {
   #state = inject(State);
 
   public total = this.#state.totalItems;

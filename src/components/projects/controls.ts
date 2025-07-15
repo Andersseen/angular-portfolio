@@ -7,10 +7,10 @@ import State from './state';
   imports: [NgStyle],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="flex items-center justify-center gap-3 px-0 py-3 md:px-8 md:py-5">
+    <div class="flex items-center justify-around gap-4 px-0 py-3">
       <button
         (click)="prevCard()"
-        class="flex h-14 w-14 items-center justify-center rounded-full border border-[#f6f6f6] transition duration-300 ease-in-out hover:scale-110 hover:bg-neutral-100 hover:text-neutral-900 active:scale-90"
+        class="border-foreground hover:bg-foreground hover:text-background flex h-14 w-14 items-center justify-center rounded-full border transition duration-300 ease-in-out hover:scale-110 active:scale-90"
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
           <path
@@ -20,8 +20,8 @@ import State from './state';
       </button>
 
       <!-- Progress -->
-      <div class="flex flex-col items-center gap-1">
-        <div class="bg-foreground relative h-1 w-24 overflow-hidden rounded">
+      <div class="flex w-3/5 flex-col items-center gap-1">
+        <div class="bg-foreground relative h-1 w-full overflow-hidden rounded">
           <div
             class="bg-background absolute top-0 left-0 h-full transition-all duration-300 ease-in-out"
             [ngStyle]="{ width: progressWidth() }"
@@ -31,7 +31,7 @@ import State from './state';
 
       <button
         (click)="nextCard()"
-        class="flex h-14 w-14 items-center justify-center rounded-full border border-[#f6f6f6] transition duration-300 ease-in-out hover:scale-110 hover:bg-neutral-100 hover:text-neutral-900 active:scale-90"
+        class="border-foreground hover:bg-foreground hover:text-background flex h-14 w-14 items-center justify-center rounded-full border transition duration-300 ease-in-out hover:scale-110 active:scale-90"
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
           <path
@@ -42,7 +42,7 @@ import State from './state';
     </div>
   `,
 })
-export class ControlsComponent {
+export default class ControlsComponent {
   #state = inject(State);
 
   public progressWidth = computed(() => {
