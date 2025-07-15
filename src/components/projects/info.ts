@@ -1,22 +1,15 @@
-import { NgStyle } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import State from './state';
-import WordAnimation from './word-morph';
+import WordAnimation from './word-animation';
 
 @Component({
   selector: 'app-info',
-  imports: [NgStyle, WordAnimation],
+  imports: [WordAnimation],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="flex h-full flex-col justify-center gap-6 p-6 text-center md:items-start md:text-left">
       <div>
-        <app-word-animation
-          [ngStyle]="{
-            fontSize: 'clamp(2rem, 6vw, 4rem)',
-            maxWidth: '18ch',
-          }"
-          [word]="title()"
-        />
+        <app-word-animation [word]="title()" />
         <!-- <h1  [ngStyle]="{
             fontSize: 'clamp(2rem, 6vw, 4rem)',
             maxWidth: '18ch',
