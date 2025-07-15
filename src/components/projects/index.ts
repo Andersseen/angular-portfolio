@@ -1,9 +1,11 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { Card, CardStack } from './card-stack';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { CardStack } from './card-stack';
+import State from './state';
 
 @Component({
   selector: 'app-projects',
   imports: [CardStack],
+  providers: [State],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <section class="grid h-screen w-full grid-cols-1 md:grid-cols-2">
@@ -14,14 +16,12 @@ import { Card, CardStack } from './card-stack';
 
       <!-- Right: Card Stack -->
       <div class="bg-foreground/20 flex flex-col items-center justify-center">
-        <app-card-stack (returnTitle)="getData($event)" />
+        <app-card-stack />
       </div>
     </section>
   `,
 })
 export default class Projects {
-  public title = signal('');
-  getData(item: Card) {
-    this.title.set(item.title);
-  }
+  #state = inject(State);
+  public title = computed(() => this.#state.currentSlide().title);
 }
