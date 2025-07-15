@@ -33,19 +33,19 @@ export class SphereInstances {
   );
   private bumpMap = injectTexture(() => '/bump.jpg');
 
-  materialOptions = computed(() => ({
+  public materialOptions = computed(() => ({
     envMap: this.envMap()?.[0],
     bumpMap: this.bumpMap(),
-    emissive: '#010101',
+    emissive: '#4f4f4f',
     emissiveIntensity: 2,
-    roughness: 0.4,
+    roughness: 0.2,
     metalness: 1,
-    bumpScale: 0.05,
-    clearcoat: 0.8,
-    clearcoatRoughness: 0.8,
+    bumpScale: 0.005,
+    clearcoat: 1,
+    clearcoatRoughness: 1,
     radius: 1,
-    distort: 0.5,
-    toneMapped: false,
+    distort: 0.4,
+    color: '#010101',
   }));
 
   initialPositions = [

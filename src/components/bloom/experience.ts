@@ -8,8 +8,8 @@ extend(THREE);
 
 @Component({
   template: `
-    <ngt-color attach="red" *args="['#171717']" />
-    <ngt-fog attach="fog" *args="['#171717', 8, 30]" />
+    <ngt-color attach="fog" *args="['#010101']" />
+    <ngt-fog attach="fog" *args="['#010101', 8, 30]" />
 
     <app-sphere-instances />
 

@@ -15,7 +15,17 @@ extend(THREE);
     <section class="relative h-screen w-full">
       <app-noise class="absolute h-full w-full" />
       <and-hero-title title="Web developer" />
-      <ngt-canvas [sceneGraph]="sceneGraph" [camera]="{ position: [0, 0, 2] }" />
+      <ngt-canvas
+        [sceneGraph]="sceneGraph"
+        [camera]="{ position: [0, 0, 2] }"
+        [gl]="{
+          powerPreference: 'high-performance',
+          alpha: false,
+          antialias: false,
+          stencil: false,
+          depth: false,
+        }"
+      />
       <ngts-loader />
     </section>
   `,
