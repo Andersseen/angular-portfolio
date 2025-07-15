@@ -1,13 +1,14 @@
 import { NgStyle } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, OnInit, output, signal, viewChild } from '@angular/core';
-import { ControlsComponent } from './controls';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import ControlsComponent from './controls';
+import State from './state';
 
 @Component({
   selector: 'app-card-stack',
   imports: [NgStyle, ControlsComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div #stackRef class="relative" [ngStyle]="{ perspective: '600px', width: '400px', height: '400px' }">
+    <div [ngStyle]="{ perspective: '600px', width: '400px', height: '400px' }">
       @for (card of cards(); track card.id) {
         <div
           class="border-foreground absolute cursor-grab touch-none overflow-hidden rounded-2xl border-4 bg-cover bg-center transition-transform duration-300 ease-out"
@@ -24,21 +25,19 @@ import { ControlsComponent } from './controls';
         ></div>
       }
     </div>
-    <app-controls [(cards)]="cards" />
+    <app-controls />
   `,
 })
-export class CardStack implements OnInit {
-  public returnTitle = output<Card>();
+export default class CardStack {
+  #state = inject(State);
 
-  public cards = signal(CARDS);
+  public total = this.#state.totalItems;
+
+  public cards = this.#state.slides;
   public draggingId = signal(0);
   public dragX = signal(0);
   public dragY = signal(0);
 
-  public stackRef = viewChild<ElementRef<HTMLElement>>('stackRef');
-  ngOnInit(): void {
-    this.returnTitle.emit(this.cards()[this.cards().length - 1]);
-  }
   startDrag(event: MouseEvent, id: number) {
     event.preventDefault();
     this.draggingId.set(id);
@@ -56,7 +55,7 @@ export class CardStack implements OnInit {
     if (moveHandler) window.removeEventListener('mousemove', moveHandler);
 
     if (Math.abs(this.dragX()) > 150 || Math.abs(this.dragY()) > 150) {
-      if (this.draggingId()) this.sendToBack(this.draggingId()!);
+      this.sendToBack(this.dragX());
     }
 
     this.draggingId.set(0);
@@ -66,9 +65,9 @@ export class CardStack implements OnInit {
 
   getCardTransform(id: number) {
     const index = this.cards().findIndex((c) => c.id === id);
-    const total = this.cards().length;
-    const baseRotate = (total - index - 1) * 4;
-    const scale = 1 + index * 0.06 - total * 0.06;
+
+    const baseRotate = (this.total() - index - 1) * 4;
+    const scale = 1 + index * 0.06 - this.total() * 0.06;
     if (this.draggingId() === id) {
       return `translate(${this.dragX()}px, ${this.dragY()}px) rotateX(${this.dragY() / 4}deg) rotateY(${this.dragX() / 4}deg) scale(${scale})`;
     } else {
@@ -80,25 +79,11 @@ export class CardStack implements OnInit {
     return this.cards().findIndex((c) => c.id === id) + 1;
   }
 
-  sendToBack(id: number) {
-    const arr = [...this.cards()];
-    const index = arr.findIndex((c) => c.id === id);
-    const [card] = arr.splice(index, 1);
-    arr.unshift(card);
-    this.cards.set(arr);
-    this.returnTitle.emit(this.cards()[this.cards().length - 1]);
+  sendToBack(dragging: number) {
+    if (dragging > 0) {
+      this.#state.nextSlide();
+      return;
+    }
+    this.#state.prevSlide();
   }
-}
-
-export const CARDS: Card[] = [
-  { id: 1, img: '/falcotech.webp', title: 'FalcoTech' },
-  { id: 2, img: '/epm.webp', title: 'Estética Paloma Molero' },
-  { id: 3, img: '/soul.webp', title: 'Soul Alegría' },
-  { id: 4, img: '/biker.webp', title: 'Stylish web' },
-];
-
-export interface Card {
-  id: number;
-  img: string;
-  title: string;
 }
