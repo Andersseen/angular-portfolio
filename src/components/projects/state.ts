@@ -37,15 +37,70 @@ export default class State {
   }
 }
 
-export const SLIDES: Slide[] = [
-  { id: 1, img: '/falcotech.webp', title: 'FalcoTech' },
-  { id: 2, img: '/epm.webp', title: 'Estética Paloma Molero' },
-  { id: 3, img: '/soul.webp', title: 'Soul Alegría' },
-  { id: 4, img: '/biker.webp', title: 'Stylish web' },
-];
-
 export interface Slide {
   id: number;
   img: string;
   title: string;
+  link: string;
+  description: string;
+  features: string[];
 }
+
+export const SLIDES: Slide[] = [
+  {
+    id: 1,
+    img: '/falcotech.webp',
+    title: 'FalcoTech',
+    link: 'https://www.falcotech.es/',
+    description:
+      'Technical service and technology solutions company offering device repair, support, and IT management for businesses and individuals.',
+    features: [
+      'Responsive multi-page layout',
+      'Service listing with contact form',
+      'Simple color scheme focused on usability',
+      'Angular frontend integration',
+    ],
+  },
+  {
+    id: 2,
+    img: '/epm.webp',
+    title: 'Estética Paloma Molero',
+    link: 'https://www.palomamolero.com/',
+    description:
+      'A modern beauty and aesthetics studio website showcasing treatments, pricing, and online booking options for clients.',
+    features: [
+      'Elegant and calming design',
+      'Service and price listing',
+      'Embedded Google Maps location',
+      'Appointment contact integration',
+    ],
+  },
+  {
+    id: 3,
+    img: '/soul.webp',
+    title: 'Soul Alegría',
+    link: 'https://www.soulalegria.com/',
+    description:
+      'Dance and culture school website presenting courses, events, and information about Afro-Latin dance styles and philosophy.',
+    features: [
+      'Event calendar integration',
+      'Video and gallery content',
+      'Contact and registration forms',
+      'Artistic, vibrant design language',
+    ],
+  },
+  {
+    id: 4,
+    img: '/biker.webp',
+    title: 'Stylish Web',
+    link: 'https://customadrid.pages.dev/',
+    description:
+      'Showcase for a motorcycle customization and repair garage with a bold aesthetic, featuring past projects and service information.',
+    features: [
+      'Gallery of custom motorcycles',
+      'One-page layout with smooth scrolling',
+      'Dark theme with contrasting accents',
+      'Mobile-optimized experience',
+    ],
+  },
+];
