@@ -13,7 +13,10 @@ import Ripple from './ripple';
         class="preloader bg-background text-foreground inset-0 z-50 flex flex-col items-center justify-center transition-transform duration-1000 ease-in-out"
         [ngClass]="{ '-translate-y-full': !show() }"
       >
-        <app-ripple [rippleBorderColor]="'rgba(255, 255, 255, 0.7)'" rippleColor="rgba(174, 174, 174, 0.54)">
+        <app-ripple
+          rippleBorderColor="rgba(255, 255, 255, 0.7)"
+          [rippleColor]="isDarkTheme() ? 'oklch(0.97 0 0)' : 'oklch(0.205 0 0)'"
+        >
           <div class="flex h-full w-full flex-col items-center justify-center overflow-hidden">
             <h1
               class="from-foreground to-foreground/10 bg-gradient-to-b bg-clip-text text-[4rem] font-bold text-transparent"
