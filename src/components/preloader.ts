@@ -1,19 +1,35 @@
 import BaseComponent from '@/shared/base.component';
 import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, effect, input, signal } from '@angular/core';
+import Ripple from './ripple';
 
 @Component({
   selector: 'app-preloader',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [NgClass],
+  imports: [NgClass, Ripple],
   template: `
     @if (visible()) {
       <section
-        class="preloader inset-0 z-50 flex flex-col items-center justify-center bg-neutral-900 text-neutral-100 transition-transform duration-1000 ease-in-out"
+        class="preloader bg-background text-foreground inset-0 z-50 flex flex-col items-center justify-center transition-transform duration-1000 ease-in-out"
         [ngClass]="{ '-translate-y-full': !show() }"
       >
-        <h1 class="text-5xl font-bold tracking-tight">{{ getContent().preload.title }}</h1>
-        <p class="text-lg font-bold tracking-tight">{{ getContent().preload.description }}..</p>
+        <app-ripple
+          rippleBorderColor="rgba(255, 255, 255, 0.7)"
+          [rippleColor]="isDarkTheme() ? 'oklch(0.97 0 0)' : 'oklch(0.205 0 0)'"
+        >
+          <div class="flex h-full w-full flex-col items-center justify-center overflow-hidden">
+            <h1
+              class="from-foreground to-foreground/10 bg-gradient-to-b bg-clip-text text-[4rem] font-bold text-transparent"
+            >
+              {{ getContent().preload.title }}
+            </h1>
+            <p
+              class="from-foreground to-foreground/10 bg-gradient-to-b bg-clip-text text-lg font-bold text-transparent"
+            >
+              {{ getContent().preload.description }}..
+            </p>
+          </div>
+        </app-ripple>
       </section>
     }
   `,
@@ -26,8 +42,8 @@ import { ChangeDetectionStrategy, Component, effect, input, signal } from '@angu
     `,
   ],
 })
-export default class PreloaderComponent extends BaseComponent {
-  public delay = input(1500);
+export default class Preloader extends BaseComponent {
+  public delay = input(1000);
 
   public visible = signal(true);
   public show = signal(true);

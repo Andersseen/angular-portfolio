@@ -1,11 +1,18 @@
+import { NgStyle } from '@angular/common';
 import { ChangeDetectionStrategy, Component, DestroyRef, Input, WritableSignal, inject, signal } from '@angular/core';
 
 @Component({
   selector: 'app-word-animation',
-  imports: [],
+  imports: [NgStyle],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="inline-flex flex-wrap text-[clamp(2rem,6vw,4rem)] leading-tight font-bold">
+    <div
+      class="inline-flex text-[clamp(2rem,6vw,4rem)] leading-tight font-bold"
+      [ngStyle]="{
+        fontSize: 'clamp(2rem, 6vw, 3rem)',
+        maxWidth: '18ch',
+      }"
+    >
       @for (char of animatedText(); track $index) {
         <span class="inline-block">{{ char }}</span>
       }
@@ -34,7 +41,7 @@ export default class WordAnimation {
 
   private startAnimation(target: string) {
     const targetChars = Array.from(target);
-    const currentChars = targetChars.map((char) => (char === ' ' ? ' ' : this.alphabetES[0]));
+    const currentChars: string[] = targetChars.map((char) => (char === ' ' ? ' ' : this.alphabetES[0]));
     this.animatedText.set([...currentChars]);
 
     if (this.frameId !== null) cancelAnimationFrame(this.frameId);

@@ -16,9 +16,9 @@ extend(THREE);
   imports: [NgtArgs],
 })
 export class MainSphere {
-  material = input.required<Material>();
+  public material = input.required<Material>();
 
-  meshRef = viewChild.required<ElementRef<Mesh>>('mesh');
+  public meshRef = viewChild.required<ElementRef<Mesh>>('mesh');
 
   constructor() {
     injectBeforeRender(({ clock, pointer }) => {

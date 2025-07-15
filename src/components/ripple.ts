@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { isPlatformBrowser, NgClass, NgStyle } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -14,42 +14,118 @@ import {
 
 @Component({
   selector: 'app-ripple',
-  standalone: true,
-  imports: [CommonModule],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [NgStyle, NgClass],
   template: `
-    <div #rippleRef class="relative h-full w-full overflow-hidden" [ngStyle]="style" [ngClass]="styleClass">
-      <div
-        class="pointer-events-none absolute inset-0 [mask-image:linear-gradient(180deg,white,transparent)]"
-        [class.paused]="!isInView()"
-      >
-        @for (let i of rippleLayers; track $index) {
-          <div
-            class="animate-ripple absolute top-1/2 left-1/2 rounded-full border border-[var(--om-ripple-border-color)] bg-[var(--om-ripple-color)]"
-            [ngStyle]="layerStyles[i]"
-          ></div>
-        }
+    <div class="om-ripple" [ngStyle]="style" [ngClass]="styleClass" #OmRippleRef>
+      <div class="om-ripple-background" [class.paused]="!isInView()">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
       </div>
       <ng-content></ng-content>
     </div>
   `,
   styles: [
     `
-      :host {
+      .om-ripple {
         --om-ripple-border-color: rgba(0, 0, 0, 0.7);
         --om-ripple-color: rgba(0, 0, 0, 0.85);
         --om-ripple-animation-duration: 2s;
+
+        height: 100dvh;
+        width: 100dvw;
+        position: relative;
+        overflow: hidden;
+
+        .om-ripple-background {
+          height: 100%;
+          width: 100%;
+          position: absolute;
+          -webkit-mask-image: linear-gradient(180deg, #fff, transparent);
+          mask-image: linear-gradient(180deg, #fff, transparent);
+          pointer-events: none;
+
+          div {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border-style: solid;
+            border-width: 1px;
+            transform: translate(-50%, -50%) scale(1);
+            background-color: var(--om-ripple-color);
+            border-radius: 100%;
+            border: 2px solid var(--om-ripple-border-color);
+            animation-name: om-ripple;
+            animation-duration: var(--om-ripple-animation-duration);
+            animation-timing-function: ease;
+            animation-iteration-count: infinite;
+          }
+
+          &.paused div {
+            animation-play-state: paused;
+          }
+        }
       }
 
-      .animate-ripple {
-        animation-name: om-ripple;
-        animation-duration: var(--om-ripple-animation-duration);
-        animation-timing-function: ease;
-        animation-iteration-count: infinite;
+      .om-ripple-background > div:nth-child(1) {
+        width: 210px;
+        height: 210px;
+        opacity: 0.24;
+        animation-delay: 0s;
       }
 
-      .paused .animate-ripple {
-        animation-play-state: paused;
+      .om-ripple-background > div:nth-child(2) {
+        width: 280px;
+        height: 280px;
+        opacity: 0.21;
+        animation-delay: 0.06s;
+      }
+
+      .om-ripple-background > div:nth-child(3) {
+        width: 350px;
+        height: 350px;
+        opacity: 0.18;
+        animation-delay: 0.12s;
+      }
+
+      .om-ripple-background > div:nth-child(4) {
+        width: 420px;
+        height: 420px;
+        opacity: 0.15;
+        animation-delay: 0.18s;
+      }
+
+      .om-ripple-background > div:nth-child(5) {
+        width: 490px;
+        height: 490px;
+        opacity: 0.12;
+        animation-delay: 0.24s;
+      }
+
+      .om-ripple-background > div:nth-child(6) {
+        width: 560px;
+        height: 560px;
+        opacity: 0.09;
+        animation-delay: 0.3s;
+      }
+
+      .om-ripple-background > div:nth-child(7) {
+        width: 630px;
+        height: 630px;
+        opacity: 0.06;
+        animation-delay: 0.36s;
+      }
+
+      .om-ripple-background > div:nth-child(8) {
+        width: 700px;
+        height: 700px;
+        opacity: 0.03;
+        animation-delay: 0.42s;
       }
 
       @keyframes om-ripple {
@@ -57,53 +133,45 @@ import {
         100% {
           transform: translate(-50%, -50%) scale(1);
         }
+
         50% {
           transform: translate(-50%, -50%) scale(0.9);
         }
       }
     `,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class Ripple implements AfterViewInit, OnDestroy {
-  @ViewChild('rippleRef') rippleRef!: ElementRef<HTMLElement>;
-  @Input() styleClass?: string;
+  @ViewChild('OmRippleRef') rippleRef!: ElementRef<HTMLElement>;
 
-  style: Record<string, any> = {};
+  @Input('styleClass')
+  styleClass?: string;
 
-  isInView = signal(false);
-
-  rippleLayers = Array.from({ length: 8 }, (_, i) => i);
-
-  layerStyles = this.rippleLayers.map((i) => {
-    const baseSize = 210 + i * 70;
-    const opacity = (0.24 - i * 0.03).toFixed(2);
-    const delay = `${i * 0.06}s`;
-    return {
-      width: `${baseSize}px`,
-      height: `${baseSize}px`,
-      opacity,
-      animationDelay: delay,
-    };
-  });
-
-  constructor(@Inject(PLATFORM_ID) private platformId: object) {}
-
-  @Input() set rippleColor(color: string) {
+  @Input('rippleColor')
+  set rippleColor(color: string) {
     this.style['--om-ripple-color'] = color;
   }
 
-  @Input() set rippleBorderColor(color: string) {
+  @Input('rippleBorderColor')
+  set rippleBorderColor(color: string) {
     this.style['--om-ripple-border-color'] = color;
   }
 
-  @Input() set animationDuration(duration: string) {
+  @Input('animationDuration')
+  set animationDuration(duration: string) {
     this.style['--om-ripple-animation-duration'] = duration;
   }
 
+  style: any = {};
+
+  isInView = signal(false);
   private intersectionObserver?: IntersectionObserver;
 
+  constructor(@Inject(PLATFORM_ID) private platformId: object) {}
+
   ngAfterViewInit(): void {
-    if (typeof window !== 'undefined') {
+    if (isPlatformBrowser(this.platformId)) {
       this.intersectionObserver = new IntersectionObserver(([entry]) => {
         this.isInView.set(entry.isIntersecting);
       });
@@ -112,6 +180,8 @@ export default class Ripple implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.intersectionObserver?.disconnect();
+    if (this.intersectionObserver) {
+      this.intersectionObserver.disconnect();
+    }
   }
 }
