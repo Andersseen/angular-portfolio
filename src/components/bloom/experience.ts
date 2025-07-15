@@ -17,7 +17,7 @@ extend(THREE);
       <ngtp-depth-of-field [options]="{ focusDistance: 0, focalLength: 0.02, bokehScale: 2, height: 480 }" />
       <ngtp-bloom [options]="{ kernelSize: 3, luminanceThreshold: 0, luminanceSmoothing: 0.9, intensity: 1.5 }" />
       <ngtp-vignette [options]="{ eskil: false, offset: 0.2, darkness: 1.1 }" />
-      <ngtp-noise [options]="{ premultiply: true }" />
+      <ngtp-noise [options]="{ premultiply: false }" />
     </ngtp-effect-composer>
   `,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

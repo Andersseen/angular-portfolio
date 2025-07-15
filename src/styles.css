@@ -19,8 +19,6 @@
   .dark {
     --color-background: oklch(0.205 0 0);
     --color-foreground: oklch(0.97 0 0);
-
-    --xxx: #303030;
   }
 }
 ::view-transition-group(preloader),

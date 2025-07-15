@@ -1,5 +1,6 @@
 import { Component, computed, CUSTOM_ELEMENTS_SCHEMA, type ElementRef, viewChildren } from '@angular/core';
 import { extend, injectBeforeRender, injectLoader, NgtArgs } from 'angular-three';
+import { NgtpEffectComposer, NgtpNoise } from 'angular-three-postprocessing';
 import { injectTexture } from 'angular-three-soba/loaders';
 import { NgtsMeshDistortMaterial } from 'angular-three-soba/materials';
 import * as THREE from 'three';
@@ -20,9 +21,12 @@ extend(THREE);
         <ngt-icosahedron-geometry *args="[1, 4]" />
       </ngt-mesh>
     }
+    <ngtp-effect-composer>
+      <ngtp-noise [options]="{ premultiply: true }" />
+    </ngtp-effect-composer>
   `,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports: [MainSphere, NgtArgs, NgtsMeshDistortMaterial],
+  imports: [MainSphere, NgtArgs, NgtsMeshDistortMaterial, NgtpEffectComposer, NgtpNoise],
 })
 export class SphereInstances {
   private envMap = injectLoader(
@@ -36,16 +40,16 @@ export class SphereInstances {
   public materialOptions = computed(() => ({
     envMap: this.envMap()?.[0],
     bumpMap: this.bumpMap(),
-    emissive: '#4f4f4f',
+    emissive: '#171717',
     emissiveIntensity: 2,
-    roughness: 0.2,
+    roughness: 0.3,
     metalness: 1,
-    bumpScale: 0.005,
+    bumpScale: 0.05,
     clearcoat: 1,
     clearcoatRoughness: 1,
     radius: 1,
     distort: 0.4,
-    color: '#010101',
+    color: '#171717',
   }));
 
   initialPositions = [
