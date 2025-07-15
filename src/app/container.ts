@@ -7,7 +7,7 @@ import PreloaderComponent from '../components/preloader';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterOutlet, PreloaderComponent],
   template: `
-    <app-preloader [delay]="500" />
+    <app-preloader />
     <router-outlet />
   `,
 })
