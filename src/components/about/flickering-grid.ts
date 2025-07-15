@@ -5,10 +5,11 @@ import {
   Component,
   ElementRef,
   Inject,
+  input,
   Input,
   OnDestroy,
   PLATFORM_ID,
-  ViewChild,
+  viewChild,
 } from '@angular/core';
 
 @Component({
@@ -27,14 +28,14 @@ import {
   `,
 })
 export default class FlickeringGrid implements AfterViewInit, OnDestroy {
-  @ViewChild('gridBackground') background!: ElementRef<HTMLElement>;
-  @ViewChild('gridCanvas') canvas!: ElementRef<HTMLCanvasElement>;
+  public background = viewChild<ElementRef<HTMLElement>>('gridBackground');
+  public canvas = viewChild<ElementRef<HTMLCanvasElement>>('gridCanvas');
 
   @Input() styleClass?: string;
   @Input() squareSize = 4;
   @Input() gridGap = 6;
   @Input() flickerChance = 0.3;
-  @Input() color = '#6B7280'; // Tailwind neutral-500
+  public color = input('#a3a3a3');
   @Input() maxOpacity = 0.3;
 
   private ctx!: CanvasRenderingContext2D;
@@ -60,7 +61,7 @@ export default class FlickeringGrid implements AfterViewInit, OnDestroy {
       this.toggleAnimation(entry.isIntersecting);
     });
 
-    this.intersectionObserver.observe(this.canvas.nativeElement);
+    this.intersectionObserver.observe(this.canvas()!.nativeElement);
     window.addEventListener('resize', this.setCanvasSize);
   }
 
@@ -78,8 +79,8 @@ export default class FlickeringGrid implements AfterViewInit, OnDestroy {
   }
 
   private setCanvasSize = (): void => {
-    const canvasEl = this.canvas.nativeElement;
-    const bgBounds = this.background.nativeElement.getBoundingClientRect();
+    const canvasEl = this.canvas()!.nativeElement;
+    const bgBounds = this.background()!.nativeElement.getBoundingClientRect();
 
     canvasEl.width = bgBounds.width;
     canvasEl.height = bgBounds.height;
@@ -92,7 +93,7 @@ export default class FlickeringGrid implements AfterViewInit, OnDestroy {
   };
 
   private setupGrid(): void {
-    const canvasEl = this.canvas.nativeElement;
+    const canvasEl = this.canvas()!.nativeElement;
 
     this.cols = Math.ceil(canvasEl.width / (this.squareSize + this.gridGap));
     this.rows = Math.ceil(canvasEl.height / (this.squareSize + this.gridGap));
@@ -105,9 +106,11 @@ export default class FlickeringGrid implements AfterViewInit, OnDestroy {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    ctx.fillStyle = this.color;
+    ctx.fillStyle = this.color();
     ctx.fillRect(0, 0, 1, 1);
+
     const [r, g, b] = ctx.getImageData(0, 0, 1, 1).data;
+    console.log(r, g, b);
     this.memoizedColor = `rgba(${r}, ${g}, ${b},`;
   }
 
@@ -139,7 +142,7 @@ export default class FlickeringGrid implements AfterViewInit, OnDestroy {
   private draw(): void {
     if (!this.ctx || !this.squares) return;
 
-    const canvas = this.canvas.nativeElement;
+    const canvas = this.canvas()!.nativeElement;
     this.ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     for (let i = 0; i < this.cols; i++) {

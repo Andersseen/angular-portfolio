@@ -1,3 +1,4 @@
+import BaseComponent from '@/shared/base.component';
 import { NgStyle } from '@angular/common';
 import {
   AfterViewInit,
@@ -9,7 +10,7 @@ import {
   viewChild,
   ViewChild,
 } from '@angular/core';
-import FlickeringGrid from '../flickering-grid';
+import FlickeringGrid from './flickering-grid';
 
 @Component({
   selector: 'app-about',
@@ -21,7 +22,7 @@ import FlickeringGrid from '../flickering-grid';
         class="absolute inset-0 z-0 size-full"
         [squareSize]="4"
         [gridGap]="6"
-        [color]="'#a3a3a3'"
+        [color]="isDarkTheme() ? '#a3a3a3' : '#fff'"
         [maxOpacity]="0.5"
         [flickerChance]="0.1"
       >
@@ -78,7 +79,7 @@ import FlickeringGrid from '../flickering-grid';
     </div>
   `,
 })
-export default class About implements AfterViewInit {
+export default class About extends BaseComponent implements AfterViewInit {
   @ViewChild('container') containerRef!: ElementRef<HTMLElement>;
   public box = viewChild<ElementRef<HTMLElement>>('box');
 
