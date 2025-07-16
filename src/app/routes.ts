@@ -9,7 +9,7 @@ const routes: Routes = [
       { path: '', redirectTo: '/hero', pathMatch: 'full' },
       {
         path: 'hero',
-        loadComponent: () => import('@/components/bloom'),
+        loadComponent: () => import('@/components/hero'),
       },
       {
         path: 'about',
