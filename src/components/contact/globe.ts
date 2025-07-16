@@ -43,14 +43,18 @@ export default class Globe implements AfterViewInit, OnDestroy {
       mapSamples: 16000,
       mapBrightness: 1.2,
       baseColor: [1, 1, 1],
-      markerColor: [251 / 255, 100 / 255, 21 / 255],
+      markerColor: [0.293, 0.136, 0.325],
       glowColor: [1, 1, 1],
-      markers: [],
+      markers: [
+        {
+          location: [40.0, -3.0],
+          size: 0.15,
+        },
+      ],
       onRender: (state) => {
         if (!this.pointerInteracting) this.phi += 0.005;
         state['phi'] = this.phi + this.r;
         state['width'] = this.width * 2;
-
         state['height'] = this.width * 2;
       },
     });
