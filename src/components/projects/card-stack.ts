@@ -8,13 +8,11 @@ import State from './state';
   imports: [NgStyle, ControlsComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div [ngStyle]="{ perspective: '600px', width: '400px', height: '400px' }">
+    <div class="h-full w-full perspective-[600px]">
       @for (card of cards(); track card.id) {
         <div
-          class="border-foreground absolute cursor-grab touch-none overflow-hidden rounded-2xl border-4 bg-cover bg-center transition-transform duration-300 ease-out"
+          class="border-foreground md:h- absolute h-full w-full cursor-grab touch-none overflow-hidden rounded-2xl border-4 bg-cover bg-center transition-transform duration-300 ease-out"
           [ngStyle]="{
-            width: '400px',
-            height: '400px',
             backgroundImage: 'url(' + card.img + ')',
             zIndex: getZIndex(card.id),
             transform: getCardTransform(card.id),
@@ -27,6 +25,25 @@ import State from './state';
     </div>
     <app-controls />
   `,
+  styles: [
+    `
+      :host {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        flex-direction: column;
+        justify-content: center;
+        padding: 10rem 5rem;
+      }
+
+      @media (max-width: 768px) {
+        :host {
+          padding: 1rem 2rem 5rem 2rem;
+          flex-direction: column-reverse;
+        }
+      }
+    `,
+  ],
 })
 export default class CardStack {
   #state = inject(State);
