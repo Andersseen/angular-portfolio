@@ -6,17 +6,17 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <section class="transition-fixed top-5 right-5 z-50">
+    <section class="transition-fixed">
       <button
         (click)="toggleDropdown()"
-        class="flex items-center gap-2 rounded-full border border-neutral-200 bg-neutral-100 px-4 py-3 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl dark:border-neutral-700 dark:bg-neutral-800"
+        class="border-foreground/30 bg-background flex items-center gap-2 rounded-full border px-4 py-3 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
       >
         <span class="text-lg">{{ getCurrentLanguage().flag }}</span>
-        <span class="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+        <span class="text-sm font-medium">
           {{ getCurrentLanguage().code.toUpperCase() }}
         </span>
         <svg
-          class="h-4 w-4 transform text-neutral-500 transition-transform duration-200 dark:text-neutral-400"
+          class="d h-4 w-4 transform transition-transform duration-200"
           [class.rotate-180]="isOpen"
           fill="none"
           stroke="currentColor"
@@ -27,19 +27,19 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
       </button>
       @if (isOpen) {
         <div
-          class="animate-slide-down absolute top-full right-0 mt-2 w-48 rounded-xl border border-neutral-200 bg-neutral-50 py-2 shadow-xl backdrop-blur-sm dark:border-neutral-700 dark:bg-neutral-800"
+          class="animate-slide-down border-foreground/30 bg-background absolute top-full left-0 mt-2 w-48 rounded-xl border py-2 shadow-xl backdrop-blur-sm"
         >
           @for (lang of languageService.getLanguages(); track $index) {
             <button
               (click)="selectLanguage(lang.code)"
-              class="flex w-full items-center gap-3 px-4 py-3 text-left transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl hover:bg-neutral-100 dark:hover:bg-neutral-700"
+              class="hover:bg-foreground/50 flex w-full items-center gap-3 px-4 py-3 text-left transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl"
               [class.bg-neutral-100]="lang.code === languageService.language()"
               [class.dark:bg-neutral-700]="lang.code === languageService.language()"
             >
               <span class="text-lg">{{ lang.flag }}</span>
               <div class="flex flex-col">
-                <span class="text-sm font-medium text-neutral-700 dark:text-neutral-300">{{ lang.name }}</span>
-                <span class="text-xs text-neutral-500 dark:text-neutral-400">{{ lang.code.toUpperCase() }}</span>
+                <span class="text-sm font-medium">{{ lang.name }}</span>
+                <span class="text-foreground/50 text-xs">{{ lang.code.toUpperCase() }}</span>
               </div>
               @if (lang.code === languageService.language()) {
                 <svg class="ml-auto h-4 w-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
