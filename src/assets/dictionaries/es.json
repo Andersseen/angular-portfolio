@@ -1,0 +1,31 @@
+{
+  "pages": {
+    "hero": {
+      "title": "Desarrollador web"
+    },
+    "about": {
+      "text": "Aquí debería haber un texto profundo sobre mi pasión por el código...",
+      "hiddenText": "...pero estoy ocupado resolviendo bugs y creando cosas geniales.",
+      "markText": "¡Explora y descubre más!"
+    },
+    "projects": {
+      "button": "Ver el proyecto"
+    },
+    "contact": {
+      "title": "Si quieres contactar conmigo",
+      "nameInput": "Nombre",
+      "lastNameInput": "Apellido",
+      "emailInput": "Dirección de correo electrónico",
+      "messageInput": "Mensaje",
+      "button": "Enviar mensaje"
+    }
+  },
+
+  "footer": {
+    "allRights": "Todos los derechos reservados (no realmente)"
+  },
+  "preload": {
+    "title": "Hola",
+    "description": "Por favor, espera mientras se carga el contenido..."
+  }
+}

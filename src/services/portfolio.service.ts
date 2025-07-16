@@ -1,5 +1,5 @@
 import portfolioJson from '@/assets/data/portfolio.json';
-import { PortfolioData } from '@/shared/portfolio.types';
+import { PortfolioData } from '@/shared/types';
 import { Injectable, signal } from '@angular/core';
 
 @Injectable({

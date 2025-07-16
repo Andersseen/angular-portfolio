@@ -1,4 +1,4 @@
-import Base from '@/shared/base.component';
+import Base from '@/shared/base';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({

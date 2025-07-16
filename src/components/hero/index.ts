@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import Base from '@/shared/base';
+import { Component, computed } from '@angular/core';
 import { extend, NgtCanvas } from 'angular-three';
 import { NgtsLoader } from 'angular-three-soba/loaders';
 import * as THREE from 'three';
@@ -14,8 +15,7 @@ extend(THREE);
   template: `
     <section class="relative h-screen w-full">
       <app-noise class="absolute h-full w-full" />
-      <!-- <and-hero-title title="Web developer" /> -->
-      <app-fuzzy-text text="Web developer"></app-fuzzy-text>
+      <app-fuzzy-text [text]="title()" />
       <ngt-canvas
         [sceneGraph]="sceneGraph"
         [camera]="{ position: [0, 0, 2] }"
@@ -31,6 +31,7 @@ extend(THREE);
     </section>
   `,
 })
-export default class Bloom {
+export default class Bloom extends Base {
+  public title = computed(() => this.getText().pages.hero.title);
   public sceneGraph = SceneGraph;
 }

@@ -78,74 +78,31 @@ export interface PortfolioData {
 }
 
 export interface ContentData {
-  hero: {
-    greeting: string;
-    title: string;
+  pages: {
+    hero: {
+      title: string;
+    };
+    about: {
+      text: string;
+      hiddenText: string;
+      markText: string;
+    };
+    projects: {
+      button: string;
+    };
+    contact: {
+      nameInput: string;
+      lastNameInput: string;
+      emailInput: string;
+      messageInput: string;
+      title: string;
+      button: string;
+    };
+  };
+  footer: { allRights: string };
+  preload: {
     description: string;
-    viewWork: string;
-    contact: string;
-  };
-  about: {
     title: string;
-    subtitle: string;
-    paragraphs: string[];
-    stats: Array<{ number: string; label: string }>;
-  };
-  skills: {
-    title: string;
-    subtitle: string;
-    categories: {
-      frontend: string;
-      backend: string;
-      tools: string;
-      other: string;
-    };
-  };
-  projects: {
-    title: string;
-    subtitle: string;
-    demo: string;
-    code: string;
-    viewAll: string;
-  };
-  contact: {
-    title: string;
-    subtitle: string;
-    description: string;
-    form: {
-      name: string;
-      email: string;
-      subject: string;
-      message: string;
-      send: string;
-      sending: string;
-      success: string;
-      error: string;
-    };
-    info: {
-      email: string;
-      phone: string;
-      location: string;
-    };
-  };
-  footer: {
-    tagline: string;
-    madeWith: string;
-    using: string;
-    rights: string;
-    links: {
-      home: string;
-      about: string;
-      projects: string;
-      contact: string;
-    };
-  };
-  navigation: {
-    home: string;
-    about: string;
-    skills: string;
-    projects: string;
-    contact: string;
   };
 }
 

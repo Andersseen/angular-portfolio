@@ -1,4 +1,4 @@
-import { Language, LanguageOption } from '@/shared/portfolio.types';
+import { Language, LanguageOption } from '@/shared/types';
 import { Injectable, signal } from '@angular/core';
 
 @Injectable({

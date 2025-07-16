@@ -1,4 +1,4 @@
-import Base from '@/shared/base.component';
+import Base from '@/shared/base';
 import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, effect, input, signal } from '@angular/core';
 import Ripple from './ripple';

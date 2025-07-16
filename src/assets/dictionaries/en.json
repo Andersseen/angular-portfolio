@@ -1,0 +1,30 @@
+{
+  "pages": {
+    "hero": {
+      "title": "Web developer"
+    },
+    "about": {
+      "text": "Here should be an in-depth text about my passion for coding...",
+      "hiddenText": "...but I'm busy working out bugs and creating cool stuff.",
+      "markText": "Explore and discover more!"
+    },
+    "projects": {
+      "button": "See the project"
+    },
+    "contact": {
+      "title": "If you want to contact me",
+      "nameInput": "First name",
+      "lastNameInput": "Last name",
+      "emailInput": "Email address",
+      "messageInput": "Message",
+      "button": "Send message"
+    }
+  },
+  "footer": {
+    "allRights": "All rights reserved (not really)"
+  },
+  "preload": {
+    "title": "Hello",
+    "description": "Please wait while content is loaded..."
+  }
+}

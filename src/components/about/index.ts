@@ -1,4 +1,4 @@
-import Base from '@/shared/base.component';
+import Base from '@/shared/base';
 import { NgStyle } from '@angular/common';
 import {
   AfterViewInit,
@@ -72,7 +72,7 @@ import FlickeringGrid from './flickering-grid';
         <!-- Revealed content -->
         <div class="absolute inset-0 flex items-center justify-center">
           <p #box class="max-w-3xl px-4 text-center text-3xl font-bold md:text-5xl">
-            Here should be an in-depth text about my passion for coding...
+            {{ visibleText() }}
           </p>
         </div>
       </app-flickering-grid>
@@ -87,6 +87,8 @@ export default class About extends Base implements AfterViewInit {
   public mouseX = signal(0);
   public mouseY = signal(0);
   public hoveredChar: number | null = null;
+
+  public visibleText = computed(() => this.getText().pages.about.text);
 
   public animatedText = Array.from('Interactive Angular is powerful!');
 
