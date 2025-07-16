@@ -20,6 +20,7 @@
       "button": "Send message"
     }
   },
+  "navigation": ["Home", "About", "Projects", "Contact"],
   "footer": {
     "allRights": "All rights reserved (not really)"
   },

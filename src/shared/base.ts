@@ -13,6 +13,7 @@ export default abstract class Base {
 
   public portfolio = this.#portfolioService;
   public getText = computed(() => this.#contentService.getContent());
+  public getTextInDock = computed(() => this.#contentService.getContent().navigation);
 
   public currentTheme = this.#themeService.theme;
   public isDarkTheme = computed(() => this.currentTheme() === 'dark');

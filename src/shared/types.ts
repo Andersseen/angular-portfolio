@@ -99,6 +99,7 @@ export interface ContentData {
       button: string;
     };
   };
+  navigation: string[];
   footer: { allRights: string };
   preload: {
     description: string;

@@ -76,6 +76,7 @@ export default class LanguageSwitcher {
   selectLanguage(lang: any) {
     this.languageService.setLanguage(lang);
     this.isOpen = false;
+    window.location.reload();
   }
 
   getCurrentLanguage() {

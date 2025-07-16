@@ -20,7 +20,7 @@
       "button": "Enviar mensaje"
     }
   },
-
+  "navigation": ["Inicio", "Sobre mí", "Proyectos", "Contacto"],
   "footer": {
     "allRights": "Todos los derechos reservados (no realmente)"
   },

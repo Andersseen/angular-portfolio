@@ -1,4 +1,4 @@
-import LanguageSwitcher from '@/components/language-switcher/language-switcher.component';
+import LanguageSwitcher from '@/components/language-switcher';
 import Magnet from '@/components/magnet';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
