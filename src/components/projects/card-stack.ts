@@ -1,5 +1,5 @@
 import { NgStyle } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, inject, signal } from '@angular/core';
 import ControlsComponent from './controls';
 import State from './state';
 
@@ -18,8 +18,6 @@ import State from './state';
             transform: getCardTransform(card.id),
           }"
           (mousedown)="startDrag($event, card.id)"
-          (mouseup)="endDrag()"
-          (mouseleave)="endDrag()"
         ></div>
       }
     </div>
@@ -49,47 +47,48 @@ export default class CardStack {
   #state = inject(State);
 
   public total = this.#state.totalItems;
-
   public cards = this.#state.slides;
   public draggingId = signal(0);
   public dragX = signal(0);
   public dragY = signal(0);
+  public initialX = 0;
+  public initialY = 0;
 
   startDrag(event: MouseEvent, id: number) {
     event.preventDefault();
     this.draggingId.set(id);
-    const initialX = event.clientX;
-    const initialY = event.clientY;
-    const move = (e: MouseEvent) => {
-      this.dragX.set(e.clientX - initialX);
-      this.dragY.set(e.clientY - initialY);
-    };
-    window.addEventListener('mousemove', move);
-    window.addEventListener('mouseup', () => this.endDrag(move), { once: true });
+    this.initialX = event.clientX;
+    this.initialY = event.clientY;
   }
 
-  endDrag(moveHandler?: (e: MouseEvent) => void) {
-    if (moveHandler) window.removeEventListener('mousemove', moveHandler);
-
-    if (Math.abs(this.dragX()) > 150 || Math.abs(this.dragY()) > 150) {
-      this.sendToBack(this.dragX());
+  @HostListener('document:mousemove', ['$event'])
+  onMouseMove(event: MouseEvent) {
+    if (this.draggingId() > 0) {
+      this.dragX.set(event.clientX - this.initialX);
+      this.dragY.set(event.clientY - this.initialY);
     }
+  }
 
-    this.draggingId.set(0);
-    this.dragX.set(0);
-    this.dragY.set(0);
+  @HostListener('document:mouseup')
+  onMouseUp() {
+    if (this.draggingId() > 0) {
+      if (Math.abs(this.dragX()) > 150 || Math.abs(this.dragY()) > 150) {
+        this.sendToBack(this.dragX());
+      }
+      this.draggingId.set(0);
+      this.dragX.set(0);
+      this.dragY.set(0);
+    }
   }
 
   getCardTransform(id: number) {
     const index = this.cards().findIndex((c) => c.id === id);
-
     const baseRotate = (this.total() - index - 1) * 4;
     const scale = 1 + index * 0.06 - this.total() * 0.06;
-    if (this.draggingId() === id) {
-      return `translate(${this.dragX()}px, ${this.dragY()}px) rotateX(${this.dragY() / 4}deg) rotateY(${this.dragX() / 4}deg) scale(${scale})`;
-    } else {
-      return `rotateZ(${baseRotate}deg) scale(${scale})`;
-    }
+
+    return this.draggingId() === id
+      ? `translate(${this.dragX()}px, ${this.dragY()}px) rotateX(${this.dragY() / 4}deg) rotateY(${this.dragX() / 4}deg) scale(${scale})`
+      : `rotateZ(${baseRotate}deg) scale(${scale})`;
   }
 
   getZIndex(id: number) {
@@ -97,10 +96,6 @@ export default class CardStack {
   }
 
   sendToBack(dragging: number) {
-    if (dragging > 0) {
-      this.#state.nextSlide();
-      return;
-    }
-    this.#state.prevSlide();
+    dragging > 0 ? this.#state.nextSlide() : this.#state.prevSlide();
   }
 }

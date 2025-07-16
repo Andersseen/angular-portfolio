@@ -33,7 +33,7 @@ import WordAnimation from './word-animation';
         [href]="link()"
         target="_blank"
         rel="noopener noreferrer"
-        class="bg-foreground hover:bg-primary/80 text-background inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold shadow transition duration-300 ease-in-out hover:scale-105"
+        class="bg-foreground hover:bg-primary hover:text-foreground text-background inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold shadow transition duration-300 ease-in-out hover:scale-105"
       >
         View Live Project
       </a>
