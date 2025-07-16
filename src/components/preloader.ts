@@ -1,4 +1,4 @@
-import BaseComponent from '@/shared/base.component';
+import Base from '@/shared/base.component';
 import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, effect, input, signal } from '@angular/core';
 import Ripple from './ripple';
@@ -42,7 +42,7 @@ import Ripple from './ripple';
     `,
   ],
 })
-export default class Preloader extends BaseComponent {
+export default class Preloader extends Base {
   public delay = input(1000);
 
   public visible = signal(true);

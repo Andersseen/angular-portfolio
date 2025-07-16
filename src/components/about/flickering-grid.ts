@@ -110,7 +110,6 @@ export default class FlickeringGrid implements AfterViewInit, OnDestroy {
     ctx.fillRect(0, 0, 1, 1);
 
     const [r, g, b] = ctx.getImageData(0, 0, 1, 1).data;
-    console.log(r, g, b);
     this.memoizedColor = `rgba(${r}, ${g}, ${b},`;
   }
 

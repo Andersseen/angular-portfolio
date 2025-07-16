@@ -6,10 +6,12 @@ import { PortfolioService } from '../services/portfolio.service';
 @Component({
   template: '',
 })
-export default abstract class BaseComponent {
+export default abstract class Base {
   #contentService = inject(ContentService);
   #themeService = inject(ThemeService);
-  public portfolioService = inject(PortfolioService);
+  #portfolioService = inject(PortfolioService);
+
+  public portfolio = this.#portfolioService;
 
   public currentTheme = this.#themeService.theme;
   public isDarkTheme = computed(() => this.currentTheme() === 'dark');
