@@ -1,13 +1,13 @@
+import Dock from '@/components/dock';
 import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, HostListener, inject, signal } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import Footer from './footer';
-import Navbar from './navbar';
 
 @Component({
   selector: 'app-pages',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [NgClass, RouterModule, Navbar, Footer],
+  imports: [NgClass, RouterModule, Footer, Dock],
   template: `
     <main class="relative h-screen w-screen" [ngClass]="'pages-' + direction()">
       <router-outlet />
@@ -20,8 +20,7 @@ import Navbar from './navbar';
         </footer>
       }
     </main>
-
-    <app-navbar (navigateTo)="navigateTo($event)" />
+    <app-dock (navigateTo)="navigateTo($event)" />
   `,
   styles: [
     `

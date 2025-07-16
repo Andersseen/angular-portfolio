@@ -1,0 +1,107 @@
+{
+  "projects": [
+    {
+      "id": "ecommerce-platform",
+      "title": "E-Commerce Platform",
+      "description": "A comprehensive e-commerce solution built with Angular and Node.js, featuring real-time inventory management, secure payment processing, and advanced analytics dashboard.",
+      "longDescription": "This full-stack e-commerce platform demonstrates modern web development practices with a focus on performance, security, and user experience. The application includes features like product catalog management, shopping cart functionality, order processing, and administrative tools.",
+      "technologies": ["Angular", "TypeScript", "Node.js", "PostgreSQL", "Stripe", "AWS"],
+      "image": "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "images": [
+        "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=800"
+      ],
+      "demoUrl": "https://ecommerce-demo.Andriidev.com",
+      "githubUrl": "https://github.com/AndriiPap/ecommerce-platform",
+      "status": "completed",
+      "featured": true,
+      "category": "web-app",
+      "year": 2024,
+      "client": "TechCorp Inc.",
+      "duration": "3 months",
+      "features": [
+        "Responsive design",
+        "Real-time inventory",
+        "Secure payments",
+        "Admin dashboard",
+        "Order tracking",
+        "Email notifications"
+      ]
+    },
+    {
+      "id": "task-management",
+      "title": "Task Management System",
+      "description": "Collaborative task management application with real-time updates, team collaboration features, and advanced project tracking capabilities.",
+      "longDescription": "A sophisticated project management tool designed for modern teams. Features include kanban boards, time tracking, team collaboration, file sharing, and comprehensive reporting tools.",
+      "technologies": ["React", "TypeScript", "Socket.io", "MongoDB", "Express", "Redis"],
+      "image": "https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "images": ["https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=800"],
+      "demoUrl": "https://taskmanager-demo.Andriidev.com",
+      "githubUrl": "https://github.com/AndriiPap/task-management",
+      "status": "completed",
+      "featured": true,
+      "category": "web-app",
+      "year": 2024,
+      "client": "StartupXYZ",
+      "duration": "2 months",
+      "features": [
+        "Real-time collaboration",
+        "Kanban boards",
+        "Time tracking",
+        "File sharing",
+        "Team management",
+        "Progress analytics"
+      ]
+    },
+    {
+      "id": "weather-dashboard",
+      "title": "Weather Analytics Dashboard",
+      "description": "Beautiful weather dashboard with interactive charts, forecasts, and location-based weather data visualization.",
+      "longDescription": "An advanced weather application that provides detailed meteorological data with beautiful visualizations. Features include historical data analysis, weather alerts, and customizable dashboard widgets.",
+      "technologies": ["Vue.js", "Chart.js", "OpenWeather API", "PWA", "Vuex"],
+      "image": "https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "images": ["https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&w=800"],
+      "demoUrl": "https://weather-demo.Andriidev.com",
+      "githubUrl": "https://github.com/AndriiPap/weather-dashboard",
+      "status": "completed",
+      "featured": true,
+      "category": "web-app",
+      "year": 2023,
+      "client": "Personal Project",
+      "duration": "1 month",
+      "features": [
+        "Interactive charts",
+        "Location-based data",
+        "Weather alerts",
+        "Historical analysis",
+        "PWA support",
+        "Offline functionality"
+      ]
+    },
+    {
+      "id": "portfolio-website",
+      "title": "Portfolio Website",
+      "description": "Modern, responsive portfolio website built with Angular and TailwindCSS, featuring dark/light theme switching and internationalization.",
+      "longDescription": "A professional portfolio website showcasing modern web development techniques. Built with performance and accessibility in mind, featuring smooth animations and responsive design.",
+      "technologies": ["Angular", "TailwindCSS", "TypeScript", "i18n"],
+      "image": "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "images": ["https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800"],
+      "demoUrl": "https://Andriidev.com",
+      "githubUrl": "https://github.com/AndriiPap/portfolio",
+      "status": "completed",
+      "featured": false,
+      "category": "website",
+      "year": 2024,
+      "client": "Personal Project",
+      "duration": "2 weeks",
+      "features": [
+        "Responsive design",
+        "Theme switching",
+        "Multi-language support",
+        "Smooth animations",
+        "SEO optimized",
+        "Performance focused"
+      ]
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-import { ContentService } from '@/services/content.service';
+import { ContentService } from '@/services/dictionaries';
 import { LanguageService } from '@/services/language.service';
 import { PortfolioService } from '@/services/portfolio.service';
 import { CommonModule } from '@angular/common';
