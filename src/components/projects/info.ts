@@ -10,12 +10,6 @@ import WordAnimation from './word-animation';
     <div class="flex h-full flex-col justify-center gap-6 p-6 text-center md:items-start md:text-left">
       <div>
         <app-word-animation [word]="title()" />
-        <!-- <h1  [ngStyle]="{
-            fontSize: 'clamp(2rem, 6vw, 4rem)',
-            maxWidth: '18ch',
-          }" class="leading-tight font-bold tracking-tight break-words">
-          {{ title() }}
-        </h1> -->
 
         <p class="text-muted-foreground mt-4 max-w-lg text-lg">
           {{ description() }}

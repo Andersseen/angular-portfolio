@@ -5,24 +5,17 @@ import * as THREE from 'three';
 import Noise from '../noise';
 import { SceneGraph } from './experience';
 import FuzzyText from './fuzzy-text';
-import HeroTitle from './hero-title';
 
 extend(THREE);
 
 @Component({
   selector: 'app-bloom',
-  imports: [NgtCanvas, NgtsLoader, HeroTitle, Noise, FuzzyText],
+  imports: [NgtCanvas, NgtsLoader, Noise, FuzzyText],
   template: `
     <section class="relative h-screen w-full">
       <app-noise class="absolute h-full w-full" />
       <!-- <and-hero-title title="Web developer" /> -->
-      <app-fuzzy-text
-        text="Web developer"
-        [baseIntensity]="0.18"
-        [hoverIntensity]="0.5"
-        [enableHover]="true"
-        [fuzzRange]="30"
-      ></app-fuzzy-text>
+      <app-fuzzy-text text="Web developer"></app-fuzzy-text>
       <ngt-canvas
         [sceneGraph]="sceneGraph"
         [camera]="{ position: [0, 0, 2] }"
