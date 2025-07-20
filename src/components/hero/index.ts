@@ -1,5 +1,6 @@
 import Base from '@/shared/base';
-import { Component, computed } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, computed, inject, PLATFORM_ID } from '@angular/core';
 import { extend, NgtCanvas } from 'angular-three';
 import { NgtsLoader } from 'angular-three-soba/loaders';
 import * as THREE from 'three';
@@ -18,7 +19,7 @@ extend(THREE);
       <app-fuzzy-text [text]="title()" />
       <ngt-canvas
         [sceneGraph]="sceneGraph"
-        [camera]="{ position: [0, 0, 2] }"
+        [camera]="{ position: [0, 0, isMobile ? 4 : 2] }"
         [gl]="{
           powerPreference: 'high-performance',
           alpha: false,
@@ -32,6 +33,8 @@ extend(THREE);
   `,
 })
 export default class Bloom extends Base {
+  private platformId = inject(PLATFORM_ID);
+  public isMobile = isPlatformBrowser(this.platformId) && window.innerWidth < 768;
   public title = computed(() => this.getText().pages.hero.title);
   public sceneGraph = SceneGraph;
 }
