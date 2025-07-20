@@ -1,6 +1,6 @@
 import Base from '@/shared/base';
 import { NgClass } from '@angular/common';
-import { Component, inject, OnInit, output, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, output, signal } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
@@ -79,7 +79,7 @@ import { NavigationEnd, Router } from '@angular/router';
               <div
                 class="bg-foreground text-background absolute bottom-full left-1/2 mb-2 -translate-x-1/2 transform rounded-md px-3 py-1 text-xs transition-all duration-300 group-hover:opacity-100"
               >
-                {{ item.label }}
+                {{ item.label()[$index] }}
               </div>
             }
           </div>
@@ -103,12 +103,18 @@ export default class Dock extends Base implements OnInit {
   public router = inject(Router);
   public currentRoute = signal(this.clearPath(this.router.url));
 
+  public dockLabelsText = computed(() => {
+    console.log('here');
+
+    return this.getTextInDock();
+  });
+
   public navigateTo = output<string>();
   public sectionList = signal([
-    { path: 'hero', label: this.getTextInDock()[0] },
-    { path: 'about', label: this.getTextInDock()[1] },
-    { path: 'projects', label: this.getTextInDock()[2] },
-    { path: 'contact', label: this.getTextInDock()[3] },
+    { path: 'hero', label: this.dockLabelsText },
+    { path: 'about', label: this.dockLabelsText },
+    { path: 'projects', label: this.dockLabelsText },
+    { path: 'contact', label: this.dockLabelsText },
   ]);
   ngOnInit() {
     this.router.events.subscribe((event) => {

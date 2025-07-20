@@ -20,10 +20,10 @@ import { ChangeDetectionStrategy, Component, DestroyRef, Input, WritableSignal, 
   `,
 })
 export default class WordAnimation {
-  private destroyRef = inject(DestroyRef);
+  #destroyRef = inject(DestroyRef);
 
   public alphabetEN: string[] = Array.from('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz');
-  public alphabetES: string[] = Array.from('AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚVWXYZ' + 'aábcdeéfghiíjklmnñoópqrstuúvwxyz');
+  public alphabetES: string[] = Array.from('ABCDEFGHIJKLMNÑOPQRSTUVWXYZ' + 'aábcdeéfghiíjklmnñoópqrstuúvwxyz');
 
   public alphabetUA: string[] = Array.from('АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯ' + 'абвгґдеєжзиіїйклмнопрстуфхцчшщьюя');
 
@@ -73,7 +73,7 @@ export default class WordAnimation {
 
     this.frameId = requestAnimationFrame(step);
 
-    this.destroyRef.onDestroy(() => {
+    this.#destroyRef.onDestroy(() => {
       if (this.frameId !== null) cancelAnimationFrame(this.frameId);
     });
   }

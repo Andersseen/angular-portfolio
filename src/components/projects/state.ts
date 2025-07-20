@@ -1,3 +1,4 @@
+import PROJECTS from '@/assets/data/projects.json';
 import { computed, Injectable, signal } from '@angular/core';
 
 @Injectable()
@@ -7,7 +8,10 @@ export default class State {
     return this.#slides()[0];
   });
 
+  #translationContent = signal(PROJECTS);
+
   public slides = this.#slides.asReadonly();
+  public translationContent = this.#translationContent.asReadonly();
   public currentSlide = this.#currentSlide;
   public totalItems = computed(() => this.#slides().length);
   public currentIndex = signal(1);
@@ -39,6 +43,7 @@ export default class State {
 
 export interface Slide {
   id: number;
+  code: string;
   img: string;
   title: string;
   link: string;
@@ -46,9 +51,16 @@ export interface Slide {
   features: string[];
 }
 
+export interface SlideTranslation {
+  title: string;
+  description: string;
+  features: string[];
+}
+
 export const SLIDES: Slide[] = [
   {
     id: 1,
+    code: 'falcoTech',
     img: '/falcotech.webp',
     title: 'FalcoTech',
     link: 'https://www.falcotech.es/',
@@ -63,6 +75,7 @@ export const SLIDES: Slide[] = [
   },
   {
     id: 2,
+    code: 'epm',
     img: '/epm.webp',
     title: 'Estética Paloma Molero',
     link: 'https://www.palomamolero.com/',
@@ -77,6 +90,7 @@ export const SLIDES: Slide[] = [
   },
   {
     id: 3,
+    code: 'soul',
     img: '/soul.webp',
     title: 'Soul Alegría',
     link: 'https://www.soulalegria.com/',
@@ -91,6 +105,7 @@ export const SLIDES: Slide[] = [
   },
   {
     id: 4,
+    code: 'biker',
     img: '/biker.webp',
     title: 'Stylish Web',
     link: 'https://customadrid.pages.dev/',

@@ -2,7 +2,7 @@ import Dock from '@/components/dock';
 import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, HostListener, inject, signal } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import Footer from './footer';
+import Footer from '../components/footer';
 
 @Component({
   selector: 'app-pages',

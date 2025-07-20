@@ -5,7 +5,7 @@ import { effect, Injectable, signal } from '@angular/core';
   providedIn: 'root',
 })
 export class ThemeService {
-  private currentTheme = signal<Theme>('light');
+  private currentTheme = signal<Theme>('dark');
 
   readonly theme = this.currentTheme.asReadonly();
 

@@ -46,10 +46,10 @@ import FlickeringGrid from './flickering-grid';
           <!-- Hidden Content -->
           <div class="relative z-10 max-w-4xl px-6 text-center text-white">
             <p class="max-w-3xl px-4 text-center text-3xl font-bold md:text-5xl">
-              ...but I'm busy working out bugs and creating cool stuff.
+              {{ data().hiddenText }}
             </p>
 
-            <p class="text-[--main-color]">
+            <!-- <p class="text-[--main-color]">
               @for (char of animatedText; track $index) {
                 <span
                   [ngStyle]="{
@@ -65,14 +65,14 @@ import FlickeringGrid from './flickering-grid';
                   {{ char }}
                 </span>
               }
-            </p>
+            </p> -->
           </div>
         </div>
 
         <!-- Revealed content -->
         <div class="absolute inset-0 flex items-center justify-center">
           <p #box class="max-w-3xl px-4 text-center text-3xl font-bold md:text-5xl">
-            {{ visibleText() }}
+            {{ data().visibleText }}
           </p>
         </div>
       </app-flickering-grid>
@@ -88,7 +88,10 @@ export default class About extends Base implements AfterViewInit {
   public mouseY = signal(0);
   public hoveredChar: number | null = null;
 
-  public visibleText = computed(() => this.getText().pages.about.text);
+  public data = computed(() => ({
+    visibleText: this.getText().pages.about.text,
+    hiddenText: this.getText().pages.about.hiddenText,
+  }));
 
   public animatedText = Array.from('Interactive Angular is powerful!');
 
