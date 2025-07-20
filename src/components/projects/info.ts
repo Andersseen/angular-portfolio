@@ -10,15 +10,15 @@ import WordAnimation from './word-animation';
   template: `
     <div class="flex h-full flex-col justify-center gap-6 p-6 text-center md:items-start md:text-left">
       <div>
-        <app-word-animation [word]="title()" />
+        <app-word-animation [word]="data().title" />
 
         <p class="text-muted-foreground mt-4 max-w-lg text-lg">
-          {{ description() }}
+          {{ data().description }}
         </p>
       </div>
 
       <ul class="text-foreground flex flex-col gap-2 text-sm">
-        @for (item of features(); track $index) {
+        @for (item of data().features; track $index) {
           <li class="flex items-center gap-2">
             <svg class="text-foreground/50 size-4 shrink-0" fill="currentColor" viewBox="0 0 20 20">
               <path
@@ -31,12 +31,12 @@ import WordAnimation from './word-animation';
       </ul>
 
       <a
-        [href]="link()"
+        [href]="data().link"
         target="_blank"
         rel="noopener noreferrer"
         class="bg-foreground hover:bg-primary hover:text-foreground text-background inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold shadow transition duration-300 ease-in-out hover:scale-105"
       >
-        {{ btnText() }}
+        {{ data().button }}
       </a>
     </div>
   `,
@@ -50,10 +50,12 @@ export default class Info extends Base {
         this.#state.currentSlide().code
       ],
   );
-  public title = computed(() => this.#currentContent().title);
-  public description = computed(() => this.#currentContent().description);
-  public features = computed(() => this.#currentContent().features);
-  public link = computed(() => this.#state.currentSlide().link);
+  public data = computed(() => ({
+    title: this.#currentContent().title,
+    description: this.#currentContent().description,
+    features: this.#currentContent().features,
+    link: this.#state.currentSlide().link,
 
-  public btnText = computed(() => this.getTextInProjects().button);
+    button: this.getTextInProjects().button,
+  }));
 }
