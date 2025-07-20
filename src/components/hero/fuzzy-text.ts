@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, input, OnDestroy, signal, viewChild } from '@angular/core';
+import { AfterViewInit, Component, effect, ElementRef, input, OnDestroy, signal, viewChild } from '@angular/core';
 
 @Component({
   selector: 'app-fuzzy-text',
@@ -26,6 +26,12 @@ export default class FuzzyText implements AfterViewInit, OnDestroy {
   private resizeObserver!: ResizeObserver;
   private animationFrameId: number | null = null;
 
+  constructor() {
+    effect(() => {
+      this.setupCanvas();
+    });
+  }
+
   ngAfterViewInit() {
     this.setupCanvas();
     this.resizeObserver = new ResizeObserver(() => this.setupCanvas());
@@ -34,13 +40,9 @@ export default class FuzzyText implements AfterViewInit, OnDestroy {
     this.animate();
   }
 
-  ngOnDestroy() {
-    if (this.animationFrameId) cancelAnimationFrame(this.animationFrameId);
-    if (this.resizeObserver) this.resizeObserver.disconnect();
-  }
-
   private setupCanvas() {
     const canvas = this.canvasRef()!.nativeElement;
+
     const container = this.containerRef()!.nativeElement;
 
     const computed = window.getComputedStyle(container);
@@ -81,4 +83,9 @@ export default class FuzzyText implements AfterViewInit, OnDestroy {
 
     this.animationFrameId = requestAnimationFrame(this.animate);
   };
+
+  ngOnDestroy() {
+    if (this.animationFrameId) cancelAnimationFrame(this.animationFrameId);
+    if (this.resizeObserver) this.resizeObserver.disconnect();
+  }
 }

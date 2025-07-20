@@ -1,107 +1,128 @@
 {
-  "projects": [
-    {
-      "id": "ecommerce-platform",
-      "title": "E-Commerce Platform",
-      "description": "A comprehensive e-commerce solution built with Angular and Node.js, featuring real-time inventory management, secure payment processing, and advanced analytics dashboard.",
-      "longDescription": "This full-stack e-commerce platform demonstrates modern web development practices with a focus on performance, security, and user experience. The application includes features like product catalog management, shopping cart functionality, order processing, and administrative tools.",
-      "technologies": ["Angular", "TypeScript", "Node.js", "PostgreSQL", "Stripe", "AWS"],
-      "image": "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=600",
-      "images": [
-        "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=800",
-        "https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=800"
-      ],
-      "demoUrl": "https://ecommerce-demo.Andriidev.com",
-      "githubUrl": "https://github.com/AndriiPap/ecommerce-platform",
-      "status": "completed",
-      "featured": true,
-      "category": "web-app",
-      "year": 2024,
-      "client": "TechCorp Inc.",
-      "duration": "3 months",
+  "en": {
+    "falcoTech": {
+      "title": "FalcoTech",
+      "description": "Technical service and technology solutions company offering device repair, support, and IT management for businesses and individuals.",
       "features": [
-        "Responsive design",
-        "Real-time inventory",
-        "Secure payments",
-        "Admin dashboard",
-        "Order tracking",
-        "Email notifications"
+        "Responsive multi-page layout",
+        "Service listing with contact form",
+        "Simple color scheme focused on usability",
+        "Angular frontend integration"
       ]
     },
-    {
-      "id": "task-management",
-      "title": "Task Management System",
-      "description": "Collaborative task management application with real-time updates, team collaboration features, and advanced project tracking capabilities.",
-      "longDescription": "A sophisticated project management tool designed for modern teams. Features include kanban boards, time tracking, team collaboration, file sharing, and comprehensive reporting tools.",
-      "technologies": ["React", "TypeScript", "Socket.io", "MongoDB", "Express", "Redis"],
-      "image": "https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=600",
-      "images": ["https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=800"],
-      "demoUrl": "https://taskmanager-demo.Andriidev.com",
-      "githubUrl": "https://github.com/AndriiPap/task-management",
-      "status": "completed",
-      "featured": true,
-      "category": "web-app",
-      "year": 2024,
-      "client": "StartupXYZ",
-      "duration": "2 months",
+    "epm": {
+      "title": "Estética Paloma Molero",
+      "description": "A modern beauty and aesthetics studio website showcasing treatments, pricing, and online booking options for clients.",
       "features": [
-        "Real-time collaboration",
-        "Kanban boards",
-        "Time tracking",
-        "File sharing",
-        "Team management",
-        "Progress analytics"
+        "Elegant and calming design",
+        "Service and price listing",
+        "Embedded Google Maps location",
+        "Appointment contact integration"
       ]
     },
-    {
-      "id": "weather-dashboard",
-      "title": "Weather Analytics Dashboard",
-      "description": "Beautiful weather dashboard with interactive charts, forecasts, and location-based weather data visualization.",
-      "longDescription": "An advanced weather application that provides detailed meteorological data with beautiful visualizations. Features include historical data analysis, weather alerts, and customizable dashboard widgets.",
-      "technologies": ["Vue.js", "Chart.js", "OpenWeather API", "PWA", "Vuex"],
-      "image": "https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&w=600",
-      "images": ["https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&w=800"],
-      "demoUrl": "https://weather-demo.Andriidev.com",
-      "githubUrl": "https://github.com/AndriiPap/weather-dashboard",
-      "status": "completed",
-      "featured": true,
-      "category": "web-app",
-      "year": 2023,
-      "client": "Personal Project",
-      "duration": "1 month",
+    "soul": {
+      "title": "Soul Alegría",
+      "description": "Dance and culture school website presenting courses, events, and information about Afro-Latin dance styles and philosophy.",
       "features": [
-        "Interactive charts",
-        "Location-based data",
-        "Weather alerts",
-        "Historical analysis",
-        "PWA support",
-        "Offline functionality"
+        "Event calendar integration",
+        "Video and gallery content",
+        "Contact and registration forms",
+        "Artistic, vibrant design language"
       ]
     },
-    {
-      "id": "portfolio-website",
-      "title": "Portfolio Website",
-      "description": "Modern, responsive portfolio website built with Angular and TailwindCSS, featuring dark/light theme switching and internationalization.",
-      "longDescription": "A professional portfolio website showcasing modern web development techniques. Built with performance and accessibility in mind, featuring smooth animations and responsive design.",
-      "technologies": ["Angular", "TailwindCSS", "TypeScript", "i18n"],
-      "image": "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=600",
-      "images": ["https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800"],
-      "demoUrl": "https://Andriidev.com",
-      "githubUrl": "https://github.com/AndriiPap/portfolio",
-      "status": "completed",
-      "featured": false,
-      "category": "website",
-      "year": 2024,
-      "client": "Personal Project",
-      "duration": "2 weeks",
+    "biker": {
+      "title": "Stylish Web",
+      "description": "Showcase for a motorcycle customization and repair garage with a bold aesthetic, featuring past projects and service information.",
       "features": [
-        "Responsive design",
-        "Theme switching",
-        "Multi-language support",
-        "Smooth animations",
-        "SEO optimized",
-        "Performance focused"
+        "Gallery of custom motorcycles",
+        "One-page layout with smooth scrolling",
+        "Dark theme with contrasting accents",
+        "Mobile-optimized experience"
       ]
     }
-  ]
+  },
+  "es": {
+    "falcoTech": {
+      "title": "FalcoTech",
+      "description": "Empresa de servicio técnico y soluciones tecnológicas que ofrece reparación de dispositivos, soporte y gestión IT para empresas y particulares.",
+      "features": [
+        "Diseño multipágina adaptable",
+        "Listado de servicios con formulario de contacto",
+        "Esquema de colores sencillo centrado en usabilidad",
+        "Integración frontend con Angular"
+      ]
+    },
+    "epm": {
+      "title": "Estética Paloma Molero",
+      "description": "Sitio web moderno de un estudio de belleza y estética que muestra tratamientos, precios y opciones de reserva en línea para clientes.",
+      "features": [
+        "Diseño elegante y relajante",
+        "Listado de servicios y precios",
+        "Ubicación con Google Maps integrado",
+        "Integración de contacto para citas"
+      ]
+    },
+    "soul": {
+      "title": "Soul Alegría",
+      "description": "Sitio web de una escuela de danza y cultura que presenta cursos, eventos e información sobre estilos de danza afrolatina y su filosofía.",
+      "features": [
+        "Integración de calendario de eventos",
+        "Contenido de video y galería",
+        "Formularios de contacto y registro",
+        "Diseño artístico y vibrante"
+      ]
+    },
+    "biker": {
+      "title": "Stylish Web",
+      "description": "Escaparate para un taller de personalización y reparación de motocicletas con una estética audaz, que muestra proyectos anteriores e información de servicios.",
+      "features": [
+        "Galería de motocicletas personalizadas",
+        "Diseño de una página con desplazamiento suave",
+        "Tema oscuro con acentos contrastantes",
+        "Experiencia optimizada para móviles"
+      ]
+    }
+  },
+  "ua": {
+    "falcoTech": {
+      "title": "FalcoTech",
+      "description": "Компанія технічного обслуговування та IT-рішень, яка надає послуги ремонту пристроїв, підтримки та управління IT для бізнесу та приватних осіб.",
+      "features": [
+        "Адаптивний багатосторінковий дизайн",
+        "Список послуг з контактною формою",
+        "Проста колірна схема, орієнтована на зручність",
+        "Інтеграція фронтенду на Angular"
+      ]
+    },
+    "epm": {
+      "title": "Estética Paloma Molero",
+      "description": "Сучасний вебсайт косметологічної студії, який демонструє процедури, ціни та можливості онлайн-запису для клієнтів.",
+      "features": [
+        "Елегантний та заспокійливий дизайн",
+        "Список послуг та цін",
+        "Вбудоване розташування Google Maps",
+        "Інтеграція запису на прийом"
+      ]
+    },
+    "soul": {
+      "title": "Soul Alegría",
+      "description": "Вебсайт школи танцю та культури, який презентує курси, події та інформацію про афро-латинські стилі танцю та філософію.",
+      "features": [
+        "Інтеграція календаря подій",
+        "Відео та галерея",
+        "Контактні та реєстраційні форми",
+        "Художній, яскравий дизайн"
+      ]
+    },
+    "biker": {
+      "title": "Stylish Web",
+      "description": "Вітрина майстерні з кастомізації та ремонту мотоциклів з сміливим дизайном, що демонструє попередні проекти та інформацію про послуги.",
+      "features": [
+        "Галерея кастомних мотоциклів",
+        "Односторінковий дизайн з плавною прокруткою",
+        "Темна тема з контрастними акцентами",
+        "Оптимізований для мобільних пристроїв"
+      ]
+    }
+  }
 }
