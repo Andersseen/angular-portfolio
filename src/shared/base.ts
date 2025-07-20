@@ -18,6 +18,7 @@ export default abstract class Base {
   public getText = computed(() => this.#contentService.getContent());
   // GET TEXT IN SECTIONS
   public getTextInDock = computed(() => this.#contentService.getContent().navigation);
+  public getTextInFooter = computed(() => this.#contentService.getContent().footer);
   // PAGES
   public getTextInHero = computed(() => this.#contentService.getContent().pages.hero);
   public getTextInAbout = computed(() => this.#contentService.getContent().pages.about);

@@ -1,5 +1,5 @@
 import Base from '@/shared/base';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
@@ -93,7 +93,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 
           <!-- Copyright -->
           <div class="border-border border-foreground/50 text-muted-foreground mt-12 border-t pt-6 text-center text-sm">
-            © {{ currentYear }} {{ portfolio.personalInfo?.name }}.
+            © {{ currentYear }} {{ data().allRights }}.
             {{ getContent()?.footer.rights }}
           </div>
         </div>
@@ -103,4 +103,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 })
 export default class Footer extends Base {
   public currentYear = new Date().getFullYear();
+
+  public data = computed(() => ({
+    allRights: this.getTextInFooter().allRights,
+  }));
 }
